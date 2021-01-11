@@ -1,1 +1,75 @@
-<mxfile host="app.diagrams.net" modified="2021-01-11T16:51:52.285Z" agent="5.0 (Windows)" version="14.1.9" etag="TxvnogkyWGmA10hvxOty" type="github"><diagram id="EP14cF33Mj-KKsXb8BT5">UzV2zq1wL0osyPDNT0nNUTV2VTV2LsrPL4GwciucU3NyVI0MMlNUjV1UjYwMgFjVyA2HrCFY1qAgsSg1rwSLBiADYTaQg2Y1AA==</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-01-11T18:03:48.923Z" agent="5.0 (Windows)" etag="TNJONcw64Zd7I8kQ-jdj" version="14.1.9" type="github">
+  <diagram id="EP14cF33Mj-KKsXb8BT5" name="Page-1">
+    <mxGraphModel dx="1038" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-2" value="Phishing detector" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="20" y="190" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-3" value="" style="endArrow=classic;html=1;" edge="1" parent="1" target="OhQhFZXx6VtPtcoJkQg1-15">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="160" y="260" as="sourcePoint" />
+            <mxPoint x="310" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="OhQhFZXx6VtPtcoJkQg1-30" target="OhQhFZXx6VtPtcoJkQg1-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="575" y="300" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-8" value="URLs" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="240" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-11" value="&lt;div&gt;Comparing URLs&lt;/div&gt;&lt;div&gt;with safety guidelines&lt;br&gt;&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="460" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="OhQhFZXx6VtPtcoJkQg1-15" target="OhQhFZXx6VtPtcoJkQg1-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-15" value="Verifying URLs" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="220" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-21" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="OhQhFZXx6VtPtcoJkQg1-30">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="380" y="260" as="sourcePoint" />
+            <mxPoint x="500" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-24" value="" style="endArrow=classic;html=1;entryX=0.436;entryY=1.021;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="OhQhFZXx6VtPtcoJkQg1-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="450" as="sourcePoint" />
+            <mxPoint x="130" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-25" value="" style="endArrow=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="OhQhFZXx6VtPtcoJkQg1-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="80" y="450" as="sourcePoint" />
+            <mxPoint x="515" y="440" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="80" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-26" value="URL confirmation" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="235" y="480" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-27" value="URLs" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="395" y="240" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-28" value="URLs" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="575" y="370" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-30" value="&lt;div&gt;Safety guidelines&lt;/div&gt;&lt;div&gt;database&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-31" value="Send feedback to Phishing detector " style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="255" y="350" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="OhQhFZXx6VtPtcoJkQg1-33" value="URLs" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;" vertex="1" parent="1">
+          <mxGeometry x="315" y="310" width="50" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
