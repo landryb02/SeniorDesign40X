@@ -1,0 +1,26 @@
+{
+"name": "Kill The Phish",
+"version": "0.1",
+"description": "Phishing exension",
+"permissions": ["declarativeContent", "storage"],
+"background": {
+	"scripts": ["background.js"],
+	"persistent": false
+	},
+"page_action": {
+	"default_popup": "popup.html",
+	"default_icon": {
+      "16": "images/16x16_Spiderman-L-details.png",
+	  "32":"images/32x32.jpg",
+	  "48":"images/48x48.jpg",
+	  "128":"images/128x128.png"
+	},
+	"icons": {
+      "16": "images/16x16_Spiderman-L-details.png",
+	  "32":"images/32x32.jpg",
+	  "48":"images/48x48.jpg",
+	  "128":"images/128x128.png"	  
+	  }
+	},
+"manifest_version": 2
+}
