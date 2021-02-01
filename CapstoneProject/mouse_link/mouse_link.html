@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .hide {
+      display: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .popup:hover + .hide {
+      display: block;
+      position: relative;
+      font-size: 18px;
+      color: red;
+
+      line-height: 25px;
+
+      top: 5px;
+      left: 20px;
+
+      width: 200px;
+      padding: 10px;
+
+      border: 1px solid #666666;
+      background-color: #c0cedd;
+
+      color: #000000;
+      text-align: left;
+
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Display an Element on Hover</h2>
+
+  <p>Testing for popup when hovering links</p>
+
+  <div id="1" class="popup">Hover over me.</div>
+  <div class="hide">
+    <img src="../images/Logo16.png"></img>
+    <a>Safety Level: 3/5</a>
+  </div>
+
+  <p>Example Links</p>
+
+  <a id="2" href="https://www.google.com/">GOOGLE</a>
+  <br>
+  <a id="3" href="https://duckduckgo.com/">DUCKDUCKGO</a>
+
+  <p>Text text text text</p>
+  <p>Text text text text</p>
+  <p>Text text text text</p>
+
+  <a id="2" href="https://www.google.com/">GOOGLE</a>
+  <br>
+  <a id="3" href="https://duckduckgo.com/">DUCKDUCKGO</a>
+
+  <script src="jquery-3.5.1.js"></script>
+  <script src="mouse_link.js"></script>
+
+</body>
+</html>
