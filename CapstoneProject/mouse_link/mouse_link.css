@@ -1,8 +1,25 @@
-.hide {
-  display: none;
+.crx_mouse_visited {
+  background-color: #bcd5eb !important;
+  outline: 1px solid #5166bb !important;
 }
 
-.myDIV:hover + .hide {
+.popup {
   display: block;
+  position: relative;
+  font-size: 18px;
   color: red;
+
+  line-height: 25px;
+
+  top: 5px;
+  left: 20px;
+
+  width: 200px;
+  padding: 10px;
+
+  border: 1px solid #666666;
+  background-color: #c0cedd;
+
+  color: #000000;
+  text-align: left;
 }

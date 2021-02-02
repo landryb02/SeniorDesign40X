@@ -4,7 +4,7 @@
 "description": "Phishing extension",
 "permissions": ["activeTab", "declarativeContent", "storage"],
 "background": {
-	"scripts": ["background.js"],
+	"scripts": ["mouse_link/jquery-3.5.1.js", "background.js"],
 	"persistent": false
 	},
 "page_action": {
@@ -19,9 +19,18 @@
       "16": "images/Logo16.png",
 	  "32":"images/Logo32.png",
 	  "48":"images/Logo48.png",
-	  "128":"images/Logo128.png"	  
+	  "128":"images/Logo128.png"
 	  }
 	},
+	"content_scripts": [
+		{
+			"matches": ["http://*/*", "https://*/*"],
+			"js": ["mouse_link/jquery-3.5.1.js", "mouse_link/ml_content.js", "mouse_link/mouse_link.js"],
+			"css": ["mouse_link/mouse_link.css"],
+			"run_at": "document_end",
+			"all_frames": true
+		}
+	],
 "options_page": "options.html",
 "manifest_version": 2
 }
