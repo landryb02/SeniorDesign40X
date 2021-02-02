@@ -28,5 +28,5 @@ div.style.border = '1px solid #666666';
 div.style.backgroundColor = '#c0cedd';
 
 div.style.textAlign = 'left';
-div.visibility = 'hidden';
+div.style.visibility = 'hidden';
 div.innerHTML = 'WARNING: Unsafe Link';
