@@ -25,12 +25,12 @@
 	"content_scripts": [
 		{
 			"matches": ["http://*/*", "https://*/*"],
-			"js": ["mouse_link/jquery-3.5.1.js", "mouse_link/ml_content.js", "mouse_link/mouse_link.js"],
+			"js": ["mouse_link/jquery-3.5.1.js", "mouse_link/ml_content.js", "mouse_link/mouse_link.js", "EmbeddedLinks.js"],
 			"css": ["mouse_link/mouse_link.css"],
 			"run_at": "document_end",
 			"all_frames": true
 		}
 	],
-"options_page": "Warning.html",
+"options_page": "options.html",
 "manifest_version": 2
 }
