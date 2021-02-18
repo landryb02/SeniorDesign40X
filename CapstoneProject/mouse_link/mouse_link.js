@@ -17,7 +17,9 @@
 // add image to div popup
 var popup = document.getElementById("popup");
 var img = document.createElement("Img");
-img.setAttribute("src", "https://lensdump.com/i/0hUki7");
+
+// grab the logo's directory relative to the current URL 
+img.src = chrome.runtime.getURL("images/Logo16.png");
 popup.appendChild(img);
 
 // Unique ID for the className.
