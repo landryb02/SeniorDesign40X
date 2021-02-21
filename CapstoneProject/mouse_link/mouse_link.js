@@ -1,10 +1,11 @@
 // add image to div popup
 var popup = document.getElementById("popup");
 var img = document.createElement("Img");
-var imgPath = chrome.runtime.getURL("images/Logo16.png");
-console.log(imgPath);
-img.setAttribute("src", imgPath);
+
+// grab the logo's directory relative to the current URL
+img.src = chrome.runtime.getURL("images/Logo16.png");
 popup.appendChild(img);
+popup.style.color = "black";
 
 // Unique ID for the className.
 var MOUSE_VISITED_CLASSNAME = 'crx_mouse_visited';
@@ -16,7 +17,7 @@ var isLink = false;
 // Mouse listener for any move event on the current document.
 document.addEventListener('mouseover', function (e) {
   var srcElement = e.srcElement;
-  isLink= false;
+  isLink = false;
 
   // Lets check if our underlying element is a DIV.
   if (srcElement.nodeName == 'DIV') {
@@ -76,7 +77,7 @@ document.addEventListener('click', function(e) {
 
   // check if the source element is a link
   if (srcElement.nodeName == 'DIV' && isLink) {
-    console.log("WARNING");
+    console.log("Warning");
   }
 
 });
