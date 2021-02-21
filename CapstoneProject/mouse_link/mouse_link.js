@@ -27,7 +27,7 @@ document.addEventListener('mouseover', function (e) {
     var eleClass = String(srcElement.getAttribute("class"));
 
     $("." + eleClass).children()
-            .each(function () {
+        .each(function () {
 
         // "this" is the current child
         // in the loop grabbing this
