@@ -1,23 +1,9 @@
-//$(document).ready(function(){
-//  $("a").hover(function(){
-//    $(this).css("background-color", "yellow");
-//    var $PosTop = $(this).offset().top;
-//    var $PosLeft = $(this).offset().left;
-//
-//    console.log($PosTop);
-//
-//    $(".hide").css({top: $PosTop+20, left: $PosLeft+100, position:'absolute'});
-//    $(".hide").show()
-//    }, function(){
-//    $(this).css("background-color", "white");
-//    $(".hide").hide()
-//  });
-//});
-
 // add image to div popup
 var popup = document.getElementById("popup");
 var img = document.createElement("Img");
-img.setAttribute("src", "https://lensdump.com/i/0hUki7");
+var imgPath = chrome.runtime.getURL("images/Logo16.png");
+console.log(imgPath);
+img.setAttribute("src", imgPath);
 popup.appendChild(img);
 
 // Unique ID for the className.
