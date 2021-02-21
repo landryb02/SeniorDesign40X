@@ -1,5 +1,6 @@
 {
 "name": "Kill The Phish",
+"author": "Gods of Rods",
 "version": "0.1",
 "description": "Phishing extension",
 "permissions": ["activeTab", "declarativeContent", "storage"],
@@ -32,5 +33,6 @@
 		}
 	],
 "options_page": "options.html",
-"manifest_version": 2
+"manifest_version": 2,
+"web_accessible_resources": ["images/*.png"]
 }
