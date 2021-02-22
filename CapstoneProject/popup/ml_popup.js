@@ -1,4 +1,4 @@
-// Name: Link Popup
+// Name: Link Hover/Click Popup
 // Description: Registers when the mouse hovers over an element that is a link
 //      in a webpage. Provides a popup of this link that reads out the link's
 //      safety.
