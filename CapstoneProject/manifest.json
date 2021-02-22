@@ -5,7 +5,7 @@
 "description": "Phishing extension",
 "permissions": ["activeTab", "declarativeContent", "storage"],
 "background": {
-	"scripts": ["mouse_link/jquery-3.5.1.js", "background.js"],
+	"scripts": ["popup/libraries/jquery-3.5.1.js", "background.js"],
 	"persistent": false
 	},
 "page_action": {
@@ -26,8 +26,8 @@
 	"content_scripts": [
 		{
 			"matches": ["http://*/*", "https://*/*"],
-			"js": ["mouse_link/jquery-3.5.1.js", "mouse_link/ml_content.js", "mouse_link/mouse_link2.js", "EmbeddedLinks.js"],
-			"css": ["mouse_link/mouse_link.css"],
+			"js": ["popup/libraries/jquery-3.5.1.js", "popup/ml_content.js", "popup/ml_popup.js", "EmbeddedLinks.js"],
+			"css": ["popup/ml_popup.css"],
 			"run_at": "document_end",
 			"all_frames": true
 		}

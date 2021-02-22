@@ -1,11 +1,10 @@
-//document.documentElement.style.height = '100%';
-//document.body.style.height = '100%';
-//document.documentElement.style.width = '100%';
-//document.body.style.width = '100%';
+// Creation of the popup element
+// all style and other settings are carried out here
 
+// create the dive element
 var div = document.createElement( 'div' );
 
-//set attributes for div
+// attribute settings for the popup div
 div.id = 'popup';
 
 div.display = 'block';
@@ -27,5 +26,5 @@ div.style.textAlign = 'center';
 div.style.visibility = 'hidden';
 div.innerHTML = 'WARNING: Unsafe Link';
 
-//append all elements
+// append div element to the current webpage
 document.body.appendChild( div );
