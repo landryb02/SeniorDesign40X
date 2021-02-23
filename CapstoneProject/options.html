@@ -79,34 +79,52 @@
       <p>Choose a different background color!</p>
     </div>
 	
-	<h2>Toggle Switches For Settings</h2>
-	<h3> Setting 1</h3>
-	<label class="switch">
-		<input type="checkbox">
-		<span class="slider"></span>
-	</label>
-
-	<h3> Setting 2</h3>
-
-	<label class="switch">
-		<input type="checkbox" checked>
-		<span class="slider"></span>
-	</label>
-
-	<h3> Setting 3</h3>
-
-	<label class="switch">
-		<input type="checkbox">
-		<span class="slider round"></span>
-	</label>
-
-	<h3> Setting 4</h3>
-
-	<label class="switch">
-		<input type="checkbox" checked>
-		<span class="slider round"></span>
-	</label>
 	
+	<h3>Turn On/Off Hover Function</h3>
+
+	<label class="switch">
+		<input type="checkbox" checked>
+		<span class="slider round"></span>
+	</label>
+	<br>
+	
+<div style="padding: 10px 0px 10px 0px;">	
+<div id="output-text">
+Change Font and Size for Hover Function
+</div><br>
+
+<label for="input-font">
+Font
+</label>
+    
+<select id="input-font" class="input"  onchange="changeFont()" size="1">
+  <option value="Times New Roman" 
+            selected="selected"> 
+            Times New Roman 
+        </option> 
+        <option value="Arial">Arial</option> 
+        <option value="fantasy">Fantasy</option> 
+        <option value="cursive">Cursive</option>
+</select>
+<br>
+<label for="input-size">
+  Size
+</label>
+
+<select id="input-size" class="input" onchange="changeSize ()" size="1">
+  <option value='12'>12</option>
+  <option value='16'>16</option>
+  <option value='20'>20</option>
+  <option value='24'>24</option>
+  <option value='28'>28</option>
+  <option value='32'>32</option>
+  <option value='36'>36</option>
+  <option value='40'>40</option>
+</select>
+</div>
+
+<h3><a href="aboutPage/Description page2.htm">About the Extension</a></h3>
+
   </body>
   <script src="options.js"></script>
 </html>
