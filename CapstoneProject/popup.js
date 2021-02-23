@@ -33,3 +33,17 @@ document.getElementById('ok_btn').addEventListener('click',
 
 // you can add listeners for other objects ( like other buttons ) here 
 }
+
+
+//Change Text Font and Size
+function changeFont() {
+    var myselect = document.getElementById("input-font");
+    var font = myselect.options[myselect.selectedIndex].value;
+    document.getElementById("output-text").style.fontFamily = font;
+};
+
+function changeSize() {
+	var myselect = document.getElementById("input-size");
+    var size = myselect.options[myselect.selectedIndex].value;
+	document.getElementById("output-text").style.fontSize = size + "px";
+};

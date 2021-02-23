@@ -13,3 +13,16 @@ function constructOptions(kButtonColors) {
   }
 }
 constructOptions(kButtonColors);
+
+// Change Text Font and Size
+function changeFont() {
+    var myselect = document.getElementById("input-font");
+    var font = myselect.options[myselect.selectedIndex].value;
+    document.getElementById("output-text").style.fontFamily = font;
+};
+
+function changeSize() {
+	var myselect = document.getElementById("input-size");
+    var size = myselect.options[myselect.selectedIndex].value;
+	document.getElementById("output-text").style.fontSize = size + "px";
+};
