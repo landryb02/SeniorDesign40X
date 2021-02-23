@@ -107,6 +107,8 @@ function onMouseClick(e) {
     // if link is unsafe then redirect to the warning page
     //warningPage
     //location.href = warningPage;
+    //window.location = warningPage;
+    //var warning = document.getElementByClass("button1");
 
     // temporarily replace warning page with confirm window
     if (confirm("DO YOU WISH TO CONTINUE TO THE DANGEROUS PAGE? [this is a placeholder for the warning page]")) {
