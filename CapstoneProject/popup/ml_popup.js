@@ -105,16 +105,16 @@ function onMouseClick(e) {
     return
   } else {
     // if link is unsafe then redirect to the warning page
-    warningPage
+    //warningPage
     location.href = warningPage;
     window.location = warningPage;
     //var warning = document.getElementByClass("button1");
 
     // temporarily replace warning page with confirm window
     //if (confirm("DO YOU WISH TO CONTINUE TO THE DANGEROUS PAGE? [this is a placeholder for the warning page]")) {
-      //window.location = curLink;
+    //  window.location = curLink;
     //} else {
-      //window.stop();
+    //  window.stop();
     //}
   }
 }
