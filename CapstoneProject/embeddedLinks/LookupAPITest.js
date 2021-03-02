@@ -1,34 +1,64 @@
+var test = "http://malware.testing.google.test/testing/malware/*";
+var test2 = "http://malware.wicar.org/";
+//use this for testing malware: http://malware.testing.google.test/testing/malware/*
 
-const userAction = async () => {
-    console.log("Successfully entered the function");
-    const response = await fetch('https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyDvaIuvtO6mnLdhdJDpTcbK3_l6lElgaPg', {
-        method: 'POST',
-        body: JSON.stringify({
-            "client": 
-            {
-                "clientId":      "yourcompanyname",
-                "clientVersion": "1.5.2"
-            },
-            "threatInfo": {
-                "threatTypes":      ["MALWARE", "SOCIAL_ENGINEERING"],
-                "platformTypes":    ["WINDOWS"],
-                "threatEntryTypes": ["URL"],
-            "threatEntries": [
-                {"url": "http://malware.testing.google.test/testing/malware/*"}
-                ]
+//This portion covers grabbing the embedded links within a page and then stringifies the array for the JSON body
+var arr = [], l = document.links;
+for(var i=0; i<l.length; i++)
+{
+    arr.push(l[i].href);
+}
+arr.push(test, test2);
+/////////////////////////////////////
+
+//This function runs the safe browsing POST request and outputs information 
+const userAction = async () => 
+{
+    var arrLength = arr.length;
+    for (var i = 0; i < arrLength; i++)
+    {
+        const response = await fetch('https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyDvaIuvtO6mnLdhdJDpTcbK3_l6lElgaPg', {
+            method: 'POST',
+            body: JSON.stringify({
+                "client": 
+                {
+                    "clientId":      "yourcompanyname",
+                    "clientVersion": "1.5.2"
+                },
+                "threatInfo": {
+                    "threatTypes":      ["MALWARE", "SOCIAL_ENGINEERING"],
+                    "platformTypes":    ["WINDOWS"],
+                    "threatEntryTypes": ["URL"],
+                "threatEntries": [
+                    {"url": arr[i]}
+                    ]
+                }
+            }),
+            headers: {
+            'Content-Type': 'application/json'
             }
-        }),
-        headers: {
-        'Content-Type': 'application/json'
-        }
-    });
-    const myJson = await response.json(); //extract JSON from the http response
-    console.log(myJson);
-    console.log("Successful output!");
-    }
+        });
+        const myJson = await response.json(); //extract JSON from the http response
 
+        if (isEmpty(myJson))
+        {
+            console.log("No matches were found!");
+        }
+        else
+        {
+            console.log("Here is a detected threat:", myJson.matches[0].threat.url);
+        }
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////
+
+//Run the request!
 userAction();
 
-//console.log("Uhh did something happen?");
+//This function checks whether an object is empty
+    //Useful for determing whether there was a matched url or not!
+function isEmpty(obj)
+{
+    return Object.keys(obj).length === 0;
+}
 
-//use this for testing malware: http://malware.testing.google.test/testing/malware/*
