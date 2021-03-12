@@ -46,12 +46,12 @@ document.addEventListener('mousemove', (event) => {
 // check if the current link being hovered over is safe
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
-  if (deleteMe) {
-    deleteMe = !deleteMe;
-    return true
+  if (nonsafeURL.includes(curLink)) {
+    console.log("This is the unsafe current link: ", curLink);
+    return false;
   } else {
-    deleteMe = !deleteMe;
-    return false
+    console.log("You are safe homie");
+    return true;
   }
 }
 
@@ -100,7 +100,7 @@ function onMouseLeaveLink(e) {
 // activates when the mouse clicks a link
 function onMouseClick(e) {
   // checks the safety of the link
-  if (!checkLinkSafety()) {
+  if (checkLinkSafety()) {
     // if link is safe do nothing
     return
   } else {
