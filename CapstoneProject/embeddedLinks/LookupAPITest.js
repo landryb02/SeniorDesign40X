@@ -45,7 +45,7 @@ const userAction = async () =>
 
         if (isEmpty(myJson))
         {
-            console.log("No matches were found!");
+            //console.log("No matches were found!");
         }
         else
         {
@@ -57,7 +57,9 @@ const userAction = async () =>
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Run the request!
+console.log("Program is started");
 userAction();
+console.log("Program has finished");
 
 //This function checks whether an object is empty
     //Useful for determing whether there was a matched url or not!

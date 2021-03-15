@@ -47,10 +47,10 @@ document.addEventListener('mousemove', (event) => {
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
   if (nonsafeURL.includes(curLink)) {
-    console.log("This is the unsafe current link: ", curLink);
+    //console.log("This is the unsafe current link: ", curLink);
     return false;
   } else {
-    console.log("You are safe homie");
+    //console.log("You are safe homie");
     return true;
   }
 }
@@ -82,7 +82,7 @@ function onMouseEnterLink(e) {
     popup.style.visibility = "visible";
 
     // Display current link being hovered in the console
-    console.log("Current Link Is: " + curLink);
+    //console.log("Current Link Is: " + curLink);
   }
 }
 
