@@ -4,6 +4,9 @@ var test2 = "http://malware.wicar.org/";
 
 //This portion covers grabbing the embedded links within a page and then stringifies the array for the JSON body
 var arr = [], l = document.links;
+//This will serve as the array of non-safe links for use in mouse hovering code
+var nonsafeURL = [];
+
 for(var i=0; i<l.length; i++)
 {
     arr.push(l[i].href);
@@ -42,18 +45,21 @@ const userAction = async () =>
 
         if (isEmpty(myJson))
         {
-            console.log("No matches were found!");
+            //console.log("No matches were found!");
         }
         else
         {
             console.log("Here is a detected threat:", myJson.matches[0].threat.url);
+            nonsafeURL.push(myJson.matches[0].threat.url);
         }
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////
 
 //Run the request!
+console.log("Program is started");
 userAction();
+console.log("Program has finished");
 
 //This function checks whether an object is empty
     //Useful for determing whether there was a matched url or not!
@@ -61,4 +67,3 @@ function isEmpty(obj)
 {
     return Object.keys(obj).length === 0;
 }
-
