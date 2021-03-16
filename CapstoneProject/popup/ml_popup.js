@@ -24,7 +24,7 @@ popup.appendChild(img);
 var curLink;
 var mouseX;
 var mouseY;
-var deleteMe = true;
+var linkSafety;
 
 
 //function setup(e) {
@@ -48,15 +48,18 @@ document.addEventListener('mousemove', (event) => {
 function checkLinkSafety() {
   if (nonsafeURL.includes(curLink)) {
     //console.log("This is the unsafe current link: ", curLink);
-    return false;
+    linkSafety = false;
   } else {
     //console.log("You are safe homie");
-    return true;
+    linkSafety = true;
   }
 }
 
 // activates when the mouse enters a new URL or link
 function onMouseEnterLink(e) {
+  // check the current link's safety
+  checkLinkSafety();
+
   // check if the current url is undefined
   if (e.target.protocol != undefined) {
     // position for the popup
@@ -67,7 +70,7 @@ function onMouseEnterLink(e) {
     curLink = e.target.protocol + "//" + e.target.host + e.target.pathname;
 
     // Determine if the link is safe or unsafe
-    if (checkLinkSafety()) {
+    if (linkSafety) {
       popup.innerHTML = "Link is Safe";
       popup.style.backgroundColor = "#00cc99";
     } else {
@@ -92,15 +95,10 @@ function onMouseLeaveLink(e) {
   popup.style.visibility = "hidden";
 }
 
-// detect when the mouse stops in link
-//function onMouseStopLink() {
-//
-//}
-
 // activates when the mouse clicks a link
 function onMouseClick(e) {
   // checks the safety of the link
-  if (checkLinkSafety()) {
+  if (linkSafety) {
     // if link is safe do nothing
     return
   } else {
