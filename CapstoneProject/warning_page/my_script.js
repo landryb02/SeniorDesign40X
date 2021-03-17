@@ -12,4 +12,3 @@ function myFunction2(){
 	location.href = data.ForwardLink;
 	window.location = data.ForwardLink;})
 }
-}
