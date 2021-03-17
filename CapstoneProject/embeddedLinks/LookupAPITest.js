@@ -44,14 +44,13 @@ const userAction = async (urlLink) =>
             }
         });
         const myJson = await response.json(); //extract JSON from the http response
-        console.log("Request made");
         if (isEmpty(myJson))
         {
             //console.log("No matches were found!");
         }
         else
         {
-            console.log("Here is a detected threat:", myJson.matches[0].threat.url);
+            console.log("Here is a detected threat on request:", myJson.matches[0].threat.url);
             nonsafeURL.push(myJson.matches[0].threat.url);
         }
     //}
