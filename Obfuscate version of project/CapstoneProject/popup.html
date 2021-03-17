@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kill The Phish!</title>>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	button {
+		height: 30px;
+		width: 30px;
+		outline: none;
+	}
+	
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+	}
+
+	.switch input { 
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
+
+	.slider:before {
+		position: absolute;
+		content: "";
+		height: 26px;
+		width: 26px;
+		left: 4px;
+		bottom: 4px;
+		background-color: white;
+		-webkit-transition: .4s;
+		transition: .4s;
+	}
+
+	input:checked + .slider {
+		background-color: #2196F3;
+	}
+
+	input:focus + .slider {
+		box-shadow: 0 0 1px #2196F3;
+	}
+
+	input:checked + .slider:before {
+		-webkit-transform: translateX(26px);
+		-ms-transform: translateX(26px);
+		transform: translateX(26px);
+	}
+
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 34px;
+	}
+
+	.slider.round:before {
+		border-radius: 50%;
+	}
+	
+	
+	.button{
+		height: 32px
+		width: 64px
+		border: none;
+		color: white;
+		padding: 10px 50px 26px 10px;
+		background-color: blue;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+	}
+		
+</style>
+</head>
+<body>
+<button id="changeColor"></button>
+
+<div style="padding: 10px 20px 10px 20px;">
+<h3>Turn On/Off Hover Function</h3>
+
+<label class="switch">
+	<input type="checkbox" checked>
+	<span class="slider round"></span>
+</label> 
+</div>
+<br>
+
+
+<div style="padding: 10px 20px 10px 20px;">
+<div id="output-text">
+  Change Font and Size for Hover Function
+</div><br>
+
+<label for="input-font">
+Font
+</label>
+    
+<select id="input-font" class="input" size="1">
+  <option value="Times New Roman" 
+            selected="selected"> 
+            Times New Roman 
+        </option> 
+        <option value="Arial">Arial</option> 
+        <option value="fantasy">Fantasy</option> 
+        <option value="cursive">Cursive</option>
+</select>
+<br>
+<label for="input-size">
+  Size
+</label>
+
+<select id="input-size" class="input" size="1">
+  <option value='12'>12</option>
+  <option value='16'>16</option>
+  <option value='20'>20</option>
+  <option value='24'>24</option>
+  <option value='28'>28</option>
+  <option value='32'>32</option>
+  <option value='36'>36</option>
+  <option value='40'>40</option>
+</select>
+
+<br>
+<button id="applybtn" class= "button apply">Apply</button>
+
+</div>
+
+<!--Test functionality for search box and input-->
+<div style="padding: 10px 20px 10px 20px;">           
+	<h3>Hello,</h3>
+	<p>Please enter your name : </p>         
+	<input id="name_textbox" />
+	<button id="ok_btn" type="button">OK</button>
+</div>
+<br>
+
+<div style="padding: 10px 20px 10px 20px;">
+<h3><a href="aboutPage/DescriptionPage.htm">About the Extension</a></h3>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+"name": "Kill The Phish ob version",
+"author": "Gods of Rods",
+"version": "0.2",
+"description": "Phishing extension",
+"content_security_policy": "default-src 'self'",
+"permissions": ["activeTab", "declarativeContent", "storage"],
+"background": {
+	"scripts": ["popup/libraries/jquery-3.5.1.js", "background.js"],
+	"persistent": false
+	},
+"page_action": {
+	"default_popup": "popup.html",
+	"default_icon": {
+		"16": "images/Logo16.png",
+		"32":"images/Logo32.png",
+		"48":"images/Logo48.png",
+		"128":"images/Logo128.png"
+	},
+	"icons": {
+    	"16": "images/Logo16.png",
+	  	"32":"images/Logo32.png",
+	  	"48":"images/Logo48.png",
+	  	"128":"images/Logo128.png"
+	}
+},
+"content_scripts": [
+	{
+		"matches": ["http://*/*", "https://*/*"],
+		"js": ["popup/libraries/jquery-3.5.1.js", "popup/ml_content.js", "popup/ml_popup.js", "embeddedLinks/LookupAPITest.js"],
+		"css": ["popup/ml_popup.css"],
+		"run_at": "document_end",
+		"all_frames": true
+	}
+],
+"options_page": "options.html",
+"manifest_version": 2,
+"web_accessible_resources": ["images/*.png", "warning_page/*"]
+}

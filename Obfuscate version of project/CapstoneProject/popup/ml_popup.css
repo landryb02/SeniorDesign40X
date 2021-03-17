@@ -1,0 +1,20 @@
+.popup {
+  display: block;
+  position: fixed;
+  font-size: 18px;
+  color: red;
+
+  line-height: 25px;
+
+  top: 5px;
+  left: 20px;
+
+  width: 200px;
+  padding: 10px;
+
+  border: 1px solid #666666;
+  background-color: #FF0000;
+
+  color: #000000;
+  text-align: left;
+}
