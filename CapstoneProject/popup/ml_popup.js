@@ -47,6 +47,18 @@ document.addEventListener('mousemove', (event) => {
 // check if the current link being hovered over is safe
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
+
+  /*
+  userAction(curLink);
+  if (nonsafeURL.includes(curLink)) {
+    //console.log("This is the unsafe current link: ", curLink);
+    return false;
+  } else {
+    //console.log("You are safe homie");
+    return true;
+    }
+    */
+=======
   //if (nonsafeURL.includes(curLink)) {
   //  console.log("This is the unsafe current link: ", curLink);
   //  linkSafety = false;
@@ -60,6 +72,7 @@ function checkLinkSafety() {
     linkSafety = !linkSafety;
   }else{
     linkSafety = !linkSafety;
+
   }
 
   //To easily test the warning page, comment everything above this out and uncomment this
