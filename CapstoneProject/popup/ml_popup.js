@@ -47,12 +47,15 @@ document.addEventListener('mousemove', (event) => {
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
   if (nonsafeURL.includes(curLink)) {
-    //console.log("This is the unsafe current link: ", curLink);
+    console.log("This is the unsafe current link: ", curLink);
     linkSafety = false;
   } else {
-    //console.log("You are safe homie");
+    console.log("You are safe homie");
     linkSafety = true;
   }
+
+  //To easily test the warning page, comment everything above this out and uncomment this
+  //linkSafety = false;
 }
 
 // activates when the mouse enters a new URL or link
@@ -85,7 +88,9 @@ function onMouseEnterLink(e) {
     popup.style.visibility = "visible";
 
     // Display current link being hovered in the console
-    //console.log("Current Link Is: " + curLink);
+    console.log("Current Link Is: " + curLink);
+
+
   }
 }
 
@@ -102,6 +107,12 @@ function onMouseClick(e) {
     // if link is safe do nothing
     return
   } else {
+
+    //stores the link for use for the warning page html's forward button
+    chrome.storage.sync.set({"ForwardLink" : curLink}, function(){
+		  console.log(curLink + "Is saved");
+	  })
+    
     // if link is unsafe then redirect to the warning page
     //warningPage
     location.href = warningPage;
