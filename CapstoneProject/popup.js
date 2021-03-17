@@ -47,3 +47,12 @@ function changeSize() {
     var size = myselect.options[myselect.selectedIndex].value;
 	document.getElementById("output-text").style.fontSize = size + "px";
 };
+
+document.addEventListener('DOMContentLoaded', function(){
+	document.getElementById('applybtn')
+		.addEventListener('click', changeFont);
+	
+	document.getElementById('applybtn')
+		.addEventListener('click', changeSize);
+});
+

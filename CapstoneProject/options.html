@@ -70,6 +70,21 @@
 			border-radius: 50%;
 		}
 		
+		.button{
+		height: 32px
+		width: 64px
+		border: none;
+		color: white;
+		padding: 10px 50px 26px 10px;
+		background-color: blue;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		}
+		
+		
     </style>
   </head>
   <body>
@@ -82,7 +97,7 @@
 	
 	<h3>Turn On/Off Hover Function</h3>
 
-	<label class="switch">
+	<label id="hoverSwitch" class="switch">
 		<input type="checkbox" checked>
 		<span class="slider round"></span>
 	</label>
@@ -97,7 +112,7 @@ Change Font and Size for Hover Function
 Font
 </label>
     
-<select id="input-font" class="input"  onchange="changeFont()" size="1">
+<select id="input-font" class="input" size="1">
   <option value="Times New Roman" 
             selected="selected"> 
             Times New Roman 
@@ -111,7 +126,8 @@ Font
   Size
 </label>
 
-<select id="input-size" class="input" onchange="changeSize ()" size="1">
+
+<select id="input-size" class="input" size="1">
   <option value='12'>12</option>
   <option value='16'>16</option>
   <option value='20'>20</option>
@@ -122,6 +138,8 @@ Font
   <option value='40'>40</option>
 </select>
 </div>
+
+<button id="applybtn" class= "button apply">Apply</button>
 
 <h3><a href="aboutPage/DescriptionPage.htm">About the Extension</a></h3>
 
