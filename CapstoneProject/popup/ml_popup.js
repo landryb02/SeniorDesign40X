@@ -46,6 +46,7 @@ document.addEventListener('mousemove', (event) => {
 // check if the current link being hovered over is safe
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
+  userAction(curLink);
   if (nonsafeURL.includes(curLink)) {
     //console.log("This is the unsafe current link: ", curLink);
     return false;
