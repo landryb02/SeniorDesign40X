@@ -50,8 +50,8 @@ const userAction = async (urlLink) =>
         }
         else
         {
-            console.log("Here is a detected threat on request:", myJson.matches[0].threat.url);
             nonsafeURL.push(myJson.matches[0].threat.url);
+            console.log("Here is a detected threat on request:", myJson.matches[0].threat.url);
         }
     //}
 }
