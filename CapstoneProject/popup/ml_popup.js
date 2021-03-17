@@ -46,11 +46,12 @@ document.addEventListener('mousemove', (event) => {
 // this is the connection between the hover popup and Landry's work
 function checkLinkSafety() {
   userAction(curLink);
+  //setTimeout(() => {}, 1000);
   if (nonsafeURL.includes(curLink)) {
     //console.log("This is the unsafe current link: ", curLink);
     return false;
   } else {
-    //console.log("You are safe homie");
+    console.log("Link is safe");
     return true;
     }
 }
