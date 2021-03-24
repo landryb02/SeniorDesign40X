@@ -46,7 +46,7 @@ const userAction = async (urlLink) =>
         const myJson = await response.json(); //extract JSON from the http response
         if (isEmpty(myJson))
         {
-            //console.log("No matches were found!");
+            console.log("No matches were found!");
         }
         else
         {
