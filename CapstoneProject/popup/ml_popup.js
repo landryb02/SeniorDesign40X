@@ -53,7 +53,7 @@ function checkLinkSafety() {
     console.log("You are safe homie");
     linkSafety = true;
   } 
-
+  
   //To easily test the warning page, comment everything above this out and uncomment this
   //linkSafety = false;
 }
