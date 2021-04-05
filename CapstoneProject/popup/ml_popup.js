@@ -77,7 +77,7 @@ async function onMouseEnterLink(e) {
     // update the current link to the new link
     curLink = e.target.protocol + "//" + e.target.host + e.target.pathname;
     userAction(curLink);
-    await sleep(500);
+    await sleep(200);
     // Determine if the link is safe or unsafe
     if (nonsafeURL.includes(curLink)) {
       popup.innerHTML = "WARNING: Link Unsafe";
