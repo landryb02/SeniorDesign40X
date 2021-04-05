@@ -18,7 +18,7 @@ changeColor.onclick = function(element) {
 };
 
 //Test functionality for search field and "go button"
-function myAction(input) { 
+function myAction(input) {
   console.log("input value is : " + input.value);
   alert("The entered data is : " + input.value);
   // do processing with data
@@ -26,9 +26,28 @@ function myAction(input) {
   // to view the messages appearing on the console.
 }
 
+function reportPhish(){
+  console.log("report was clicked")
+  chrome.tabs.create({url: "https://safebrowsing.google.com/safebrowsing/report_phish/?hl=en"});
+  window.close();
+}
+function reportMal(){
+  console.log("report was clicked")
+  chrome.tabs.create({url: "https://safebrowsing.google.com/safebrowsing/report_badware/?hl=en"});
+  window.close();
+}
+
 function documentEvents() {    
 document.getElementById('ok_btn').addEventListener('click', 
   function() { myAction(document.getElementById('name_textbox'));
+});
+
+document.getElementById("reportPhish_btn").addEventListener('click', 
+function() { reportPhish()
+});
+
+document.getElementById("reportMal_btn").addEventListener('click', 
+function() { reportMal()
 });
 
 // you can add listeners for other objects ( like other buttons ) here 
@@ -48,6 +67,7 @@ function changeSize() {
 	document.getElementById("output-text").style.fontSize = size + "px";
 };
 
+
 document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById('applybtn')
 		.addEventListener('click', changeFont);
@@ -55,4 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById('applybtn')
 		.addEventListener('click', changeSize);
 });
+
+
+
 

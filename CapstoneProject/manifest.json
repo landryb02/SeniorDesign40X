@@ -1,10 +1,10 @@
 {
 "name": "Kill The Phish",
 "author": "Gods of Rods",
-"version": "0.2",
+"version": "0.4",
 "description": "Phishing extension",
 "content_security_policy": "default-src 'self'",
-"permissions": ["activeTab", "declarativeContent", "storage"],
+"permissions": ["http://*/*", "https://*/*", "tabs", "activeTab", "declarativeContent", "storage"],
 "background": {
 	"scripts": ["popup/libraries/jquery-3.5.1.js", "background.js"],
 	"persistent": false
