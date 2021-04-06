@@ -1,0 +1,1 @@
+var _0xf7b7=["\x6C\x69\x6E\x6B\x73","\x6C\x65\x6E\x67\x74\x68","\x68\x72\x65\x66","\x70\x75\x73\x68","\x6C\x6F\x67"];var arr=[],l=document[_0xf7b7[0]];for(var i=0;i< l[_0xf7b7[1]];i++){arr[_0xf7b7[3]](l[i][_0xf7b7[2]])};console[_0xf7b7[4]](arr)

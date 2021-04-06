@@ -18,7 +18,7 @@ changeColor.onclick = function(element) {
 };
 
 //Test functionality for search field and "go button"
-function myAction(input) { 
+function myAction(input) {
   console.log("input value is : " + input.value);
   alert("The entered data is : " + input.value);
   // do processing with data
@@ -26,12 +26,31 @@ function myAction(input) {
   // to view the messages appearing on the console.
 }
 
-function documentEvents() {    
-document.getElementById('ok_btn').addEventListener('click', 
+function reportPhish(){
+  console.log("report was clicked")
+  chrome.tabs.create({url: "https://safebrowsing.google.com/safebrowsing/report_phish/?hl=en"});
+  window.close();
+}
+function reportMal(){
+  console.log("report was clicked")
+  chrome.tabs.create({url: "https://safebrowsing.google.com/safebrowsing/report_badware/?hl=en"});
+  window.close();
+}
+
+function documentEvents() {
+document.getElementById('ok_btn').addEventListener('click',
   function() { myAction(document.getElementById('name_textbox'));
 });
 
-// you can add listeners for other objects ( like other buttons ) here 
+document.getElementById("reportPhish_btn").addEventListener('click',
+function() { reportPhish()
+});
+
+document.getElementById("reportMal_btn").addEventListener('click',
+function() { reportMal()
+});
+
+// you can add listeners for other objects ( like other buttons ) here
 }
 
 
@@ -48,11 +67,63 @@ function changeSize() {
 	document.getElementById("output-text").style.fontSize = size + "px";
 };
 
+
 document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById('applybtn')
 		.addEventListener('click', changeFont);
-	
+
 	document.getElementById('applybtn')
 		.addEventListener('click', changeSize);
+
+    document.getElementById('linkcheckbtn').addEventListener('click', checkLink);
 });
 
+function checkLink() {
+  var link = document.getElementById("manualLink").value;
+
+  const userAction = async (link) =>
+  {
+          const response = await fetch('https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyDvaIuvtO6mnLdhdJDpTcbK3_l6lElgaPg', {
+              method: 'POST',
+              body: JSON.stringify({
+                  "client":
+                  {
+                      "clientId":      "yourcompanyname",
+                      "clientVersion": "1.5.2"
+                  },
+                  "threatInfo": {
+                      "threatTypes":      ["MALWARE", "SOCIAL_ENGINEERING"],
+                      "platformTypes":    ["WINDOWS"],
+                      "threatEntryTypes": ["URL"],
+                  "threatEntries": [
+                      {"url": link}
+                      ]
+                  }
+              }),
+              headers: {
+              'Content-Type': 'application/json'
+              }
+          });
+          const myJson = await response.json(); //extract JSON from the http response
+          console.log(myJson);
+          if (isEmpty(myJson))
+          {
+            alert("Nothing Found, Probably Safe");
+          }
+          else
+          {
+            alert("Unsafe Link");
+          }
+  }
+
+  if (link == "") {
+    alert("please enter a link");
+  } else {
+    userAction(link);
+  }
+}
+
+function isEmpty(obj)
+{
+    return Object.keys(obj).length === 0;
+}

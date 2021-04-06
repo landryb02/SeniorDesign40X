@@ -1,0 +1,33 @@
+-No comments allowed in JSON
+
+-scripts can be placed in the manifest to be ran, such as the popup.html file, under the page_action field
+	-this is determined based on what they do though I assume
+	-perhaps more scripts can be placed there for additional functionality and aesthetics
+
+-two types of icons: 1)toolbar icons and 2)extension management and warning icons
+	-The first is what you would see in the top level corner of browser to click on
+	-The second is more developer and management focused
+
+-background.js handles the functionality of taking a color and making that the background of the entire webpage
+-popup.js only handles the color that background.js changes the page to
+	-separation of concerns almost, keeping things in dedicated files and not in massive do-all scripts
+
+-popup.js has to reference, or tag, included in popup.html
+
+-will be worth researching these "events" that javascript includes
+
+###################################################################
+		Potential use for obtaining URL
+
+Content scripts can access Chrome APIs used by their parent extension by exchanging messages with the extension. They can also access the URL of an extension's file with chrome.runtime.getURL() and use the result the same as other URLs.
+
+//Code for displaying <extensionDir>/images/myimage.png:
+var imgURL = chrome.runtime.getURL("images/myimage.png");
+document.getElementById("someImage").src = imgURL;
+
+####################################################################
+
+-This might have already been known, but html does more of the scenery while javascript implements a lot of the functionality.  A lot of javascript are events and listeners and waiting on the user or some other piece of code to do something else so it can react
+
+-For options.js:
+	"When the user clicks a button, it updates the color value in the extension's global storage. Since all of the extension's files pull the color information from global storage no other values need to be updated."
