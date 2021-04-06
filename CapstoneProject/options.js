@@ -27,10 +27,12 @@ function changeSize() {
 	document.getElementById("output-text").style.fontSize = size + "px";
 };
 
+// check an inputted link
+
 document.addEventListener('DOMContentLoaded', function(){
 	document.getElementById('applybtn')
 		.addEventListener('click', changeFont);
-	
+
 	document.getElementById('applybtn')
 		.addEventListener('click', changeSize);
 });

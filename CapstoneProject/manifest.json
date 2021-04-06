@@ -4,6 +4,7 @@
 "version": "0.4",
 "description": "Phishing extension",
 "content_security_policy": "default-src 'self'",
+"content_security_policy": "script-src 'self' https://apis.google.com",
 "permissions": ["http://*/*", "https://*/*", "tabs", "activeTab", "declarativeContent", "storage"],
 "background": {
 	"scripts": ["popup/libraries/jquery-3.5.1.js", "background.js"],
