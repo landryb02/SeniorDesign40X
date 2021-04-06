@@ -9,7 +9,7 @@
 		width: 30px;
 		outline: none;
 	}
-	
+
 	.switch {
 		position: relative;
 		display: inline-block;
@@ -17,7 +17,7 @@
 		height: 34px;
 	}
 
-	.switch input { 
+	.switch input {
 		opacity: 0;
 		width: 0;
 		height: 0;
@@ -69,8 +69,8 @@
 	.slider.round:before {
 		border-radius: 50%;
 	}
-	
-	
+
+
 	.button{
 		height: 32px
 		width: 64px
@@ -84,7 +84,7 @@
 		font-size: 16px;
 		cursor: pointer;
 	}
-		
+
 </style>
 </head>
 <body>
@@ -96,7 +96,7 @@
 <label class="switch">
 	<input type="checkbox" checked>
 	<span class="slider round"></span>
-</label> 
+</label>
 </div>
 <br>
 
@@ -109,14 +109,14 @@
 <label for="input-font">
 Font
 </label>
-    
+
 <select id="input-font" class="input" size="1">
-  <option value="Times New Roman" 
-            selected="selected"> 
-            Times New Roman 
-        </option> 
-        <option value="Arial">Arial</option> 
-        <option value="fantasy">Fantasy</option> 
+  <option value="Times New Roman"
+            selected="selected">
+            Times New Roman
+        </option>
+        <option value="Arial">Arial</option>
+        <option value="fantasy">Fantasy</option>
         <option value="cursive">Cursive</option>
 </select>
 <br>
@@ -141,11 +141,11 @@ Font
 </div>
 
 <!--Test functionality for search box and input-->
-<div style="padding: 10px 20px 10px 20px;">           
-	<h3>Hello,</h3>
-	<p>Please enter your name : </p>         
-	<input id="name_textbox" />
-	<button id="ok_btn" type="button">OK</button>
+<div id="linkCheck">
+    <label for="linkCheck">Manual Link Check</label>
+    <br>
+    <input type="text" id="manualLink"/>
+    <input type="button" id="linkcheckbtn" value="Check Safety"/>
 </div>
 <br>
 

@@ -16,8 +16,8 @@ arr.push(test, test2);
 */
 /////////////////////////////////////
 
-//This function runs the safe browsing POST request and outputs information 
-const userAction = async (urlLink) => 
+//This function runs the safe browsing POST request and outputs information
+const userAction = async (urlLink) =>
 {
     //var arrLength = arr.length;
     //for (var i = 0; i < arrLength; i++)
@@ -25,7 +25,7 @@ const userAction = async (urlLink) =>
         const response = await fetch('https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyDvaIuvtO6mnLdhdJDpTcbK3_l6lElgaPg', {
             method: 'POST',
             body: JSON.stringify({
-                "client": 
+                "client":
                 {
                     "clientId":      "yourcompanyname",
                     "clientVersion": "1.5.2"
@@ -44,6 +44,7 @@ const userAction = async (urlLink) =>
             }
         });
         const myJson = await response.json(); //extract JSON from the http response
+        
         if (isEmpty(myJson))
         {
             console.log("No matches were found!");
