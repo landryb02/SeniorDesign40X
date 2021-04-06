@@ -8,7 +8,6 @@ body
 
 p
 {
-	
 	font-size: 20px;
 }
 
@@ -18,26 +17,24 @@ p
 	align-items: center;
 }
 
-#myButton
-{
-  float: left;
-  background-color: #008CBA;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  position: relative;
-  left: 300px;
-  top: 100px;
-
+#myButton {
+	display: inline-block;
+	background-color: #008CBA;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	position: relative;
+	left: -10vw;
+	
 }
 
 #myButton2 {
+	display: inline-block;
 	text-decoration-color: red;
 	background-color: black;
 	border: none;
@@ -47,7 +44,5 @@ p
 	text-decoration: underline;
 	position: relative;
 	cursor: pointer;
-	float: right;
-	top: 100px;
-	right: 300px;
+	right: -10vw;
 }
