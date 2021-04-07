@@ -11,75 +11,25 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class SeleniumTest {
 	//Disclaimer, I know this code looks bad, I'll fix it up when I get the chance
 	
-	static String text;
-	//needs to move out of a link in order to change whether the link is safe or not
-	public static boolean movetoContents(WebElement myelement, ChromeDriver driver, Locatable element, Coordinates coords, String visibility) {
-		myelement = driver.findElement(By.id("mw-toc-heading"));
+	public static boolean warningPageCheck(String eleid, String title, WebElement myelement, Locatable element, Coordinates coords, ChromeDriver driver) {
+		myelement = driver.findElement(By.id(eleid)); //finds the ignore warning or go back button
 		element = (Locatable) myelement;
 		coords = element.getCoordinates();
-		driver.getMouse().mouseMove(coords);
-		//System.out.println("moved mouse to contents");
-		//checks the visibility and sees if it matches what it should
-		visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
-		//System.out.println(visibility);
-		if (visibility.equals("hidden")) {
+		driver.getMouse().click(coords); //clicks the ignore warning page
+		if (driver.getTitle().contains(title)) {
 			return true;
-		}else {
-			return false;
 		}
+		return false;
 	}
 	
-	public static boolean movetoComputerDisplay(WebElement myelement, ChromeDriver driver, Locatable element, Coordinates coords, String visibility) {
-		//moves the mouse to a specified link on the page
-		myelement = driver.findElement(By.linkText("computer display"));
-		element = (Locatable) myelement;
-		coords = element.getCoordinates();
-		driver.getMouse().mouseMove(coords);
-		//System.out.println("moved mouse to a link");
-		//checks the popup text and visibility and sees if it matches what it should
-		text = driver.findElement(By.id("popup")).getText();
-		//System.out.println(text);
-		visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
-		//System.out.println(visibility);
-		if (text.equals("Link is Safe") && visibility.equals("visible")) {
-			return true;
-		}else {
-			return false;
-		}	
-	}
 	
-	private static boolean movetoContentFormats(WebElement myelement, ChromeDriver driver, Locatable element,
-			Coordinates coords, String visibility) {
-		//move the mouse to another link
-				myelement = driver.findElement(By.linkText("content formats"));
-				element = (Locatable) myelement;
-				coords = element.getCoordinates();
-				driver.getMouse().mouseMove(coords);
-				//System.out.println("moved mouse to content formats link");
-				
-				//checks the popup text and visibility and sees if it matches what it should
-				text = driver.findElement(By.id("popup")).getText();
-				//System.out.println(text);
-				visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
-				//System.out.println(visibility);
-				if (text.equals("WARNING: Link Unsafe") && visibility.equals("visible")) {
-					//mousedown on the link to try to activate our extension's click function
-					driver.getMouse().mouseDown(coords);
-					//System.out.println("mousedowned link");
-					return true;
-				}else {
-					return false;
-				}
-	}
-
+	//needs to move out of a link in order to change whether the link is safe or not
 	public static void main(String[] args) throws InterruptedException {
 		
 		//Test variables
 		boolean hovertest1 = false;
 		boolean hovertest2 = false;
 		boolean hovertest3 = false;
-		boolean hovertest4 = false;
-		boolean hovertest5 = false;
 		boolean clicktest1 = false;
 		boolean clicktest2 = false;
 		boolean backtest = false;
@@ -101,6 +51,9 @@ public class SeleniumTest {
 		//sets up the webdriver to use Chrome
 		ChromeDriver driver = new ChromeDriver(capabilities);
 		
+		
+		//first I need to test if the safe works.
+		//To do this, start out like before with the wikipedia page.
 		//goes to this website, can be any website, but this has a lot of links I can use
 		driver.get("http://en.wikipedia.org/wiki/Wiki");
 		driver.manage().window().maximize();
@@ -153,63 +106,67 @@ public class SeleniumTest {
 		if (driver.getTitle().equals("Hypertext - Wikipedia")) {
 			clicktest1 = true;
 		}
+				
 		
-		hovertest3 = movetoComputerDisplay(myelement, driver, element, coords, visibility);
 		
-		hovertest4 = movetoContents(myelement, driver, element, coords, visibility);
+		//Then I need to test if the unsafe works
+		//use "https://www.wicar.org/test-malware.html"
+		driver.get("https://www.wicar.org/test-malware.html");
+		myelement = driver.findElement(By.xpath("//*[@id=\"wsite-content\"]/div[3]/div/div/table/tbody/tr/td[1]/div[1]/a"));
+		element = (Locatable) myelement;
+		coords = element.getCoordinates();
+		driver.getMouse().mouseMove(coords);
 		
-		String previousTitle = driver.getTitle();
+		//Letting popup load
+		Thread.sleep(201);
+		//checks the popup text and visibility and sees if it matches what it should
+		text = driver.findElement(By.id("popup")).getText();
+		//System.out.println(text);
+		visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
+		//System.out.println(visibility);
+		if (text.equals("WARNING: Link Unsafe") && visibility.equals("visible")) {
+			hovertest3 = true;
+		}
 		
-		hovertest5 = movetoContentFormats(myelement, driver, element, coords, visibility);
+		//Next I need to click on the bad link
+		driver.getMouse().mouseDown(coords);
 		
-
-		//check the title of the current page that the test is on to see if our extension worked as it should
+		//check if the popup appeared
 		if (driver.getTitle().contains("Warning")) {
 			clicktest2 = true;
 		}
-		
+				
 		//now I need to test the forward/back buttons on the warning page
-		//back first
-		myelement = driver.findElement(By.id("myButton"));
+		//back first, use the same website
+		
+		backtest = warningPageCheck("myButton", "Test Malware! - WICAR.org", myelement, element, coords, driver);
+		
+		//for the forward, check if there is a title called "Virus/Spyware Download Blocked"
+		myelement = driver.findElement(By.xpath("//*[@id=\"wsite-content\"]/div[3]/div/div/table/tbody/tr/td[1]/div[1]/a"));
 		element = (Locatable) myelement;
 		coords = element.getCoordinates();
-		driver.getMouse().click(coords);
-		//Test for the previous title of page
-		if (driver.getTitle().equals(previousTitle)) {
-			backtest = true;
-		}
+		driver.getMouse().mouseMove(coords);
 		
-		hovertest3 = movetoComputerDisplay(myelement, driver, element, coords, visibility);
+		//Letting popup load
+		Thread.sleep(201);		
 		
-		hovertest4 = movetoContents(myelement, driver, element, coords, visibility);
+		driver.getMouse().mouseDown(coords); //clicks the bad link to go back to the warning page
 		
-		String ForwardURL = driver.findElement(By.linkText("content formats")).getAttribute("href");
+		fronttest = warningPageCheck("myButton2", "Virus/Spyware Download Blocked", myelement, element, coords, driver);
 		
-		hovertest5 = movetoContentFormats(myelement, driver, element, coords, visibility);
-		//need to get the forward button
-		myelement = driver.findElement(By.id("myButton2"));
-		element = (Locatable) myelement;
-		coords = element.getCoordinates();
-		driver.getMouse().click(coords);
-		//Test for the previous title of page
-		if (driver.getCurrentUrl().contains(ForwardURL)) {
-			fronttest = true;
-		}
-		
+		//Next must make sure that the 
 		//checks to see if all tests have passed.
-		if (hovertest1 && hovertest2 && hovertest3 && hovertest3 && hovertest4 && hovertest5 && clicktest2 && backtest) {
+		if (hovertest1 && hovertest2 && hovertest3 && hovertest3 && clicktest2 && backtest) {
 			System.out.println("Test Successful");
 		}else {
 			System.out.println("Test Failed");
-			System.out.println("hovertest1 =" + hovertest1);
-			System.out.println("hovertest2 =" + hovertest2);
-			System.out.println("hovertest3 =" + hovertest3);
-			System.out.println("hovertest4 =" + hovertest4);
-			System.out.println("hovertest5 =" + hovertest5);
-			System.out.println("clicktest1 =" + clicktest1);
-			System.out.println("clicktest2 =" + clicktest2);
-			System.out.println("backtest =" + backtest);
-			System.out.println("fronttest =" + fronttest);
+			System.out.println("hovertest1 = " + hovertest1);
+			System.out.println("hovertest2 = " + hovertest2);
+			System.out.println("hovertest3 = " + hovertest3);
+			System.out.println("clicktest1 = " + clicktest1);
+			System.out.println("clicktest2 = " + clicktest2);
+			System.out.println("backtest = " + backtest);
+			System.out.println("fronttest = " + fronttest);
 		}
 		
 	}

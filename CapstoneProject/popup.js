@@ -38,9 +38,6 @@ function reportMal(){
 }
 
 function documentEvents() {
-document.getElementById('ok_btn').addEventListener('click',
-  function() { myAction(document.getElementById('name_textbox'));
-});
 
 document.getElementById("reportPhish_btn").addEventListener('click',
 function() { reportPhish()
