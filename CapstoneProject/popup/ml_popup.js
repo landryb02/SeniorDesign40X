@@ -11,7 +11,11 @@ var warningPage = chrome.runtime.getURL("warning_page/Warning.html");
 
 // Grab the logo's directory relative to the current URL and append this image
 // to the ppopup div element
-img.src = chrome.runtime.getURL("images/Logo32.png");
+img.src = chrome.runtime.getURL("images/Logo16.png");
+img.style.display = 'inline-block';
+img.style.paddingLeft = '45px';
+//img.align = 'right';
+
 popup.appendChild(img);
 
 //This function will help with mitigating status retrieval issues
@@ -80,11 +84,14 @@ async function onMouseEnterLink(e) {
     await sleep(200);
     // Determine if the link is safe or unsafe
     if (nonsafeURL.includes(curLink)) {
-      popup.innerHTML = "WARNING: Link Unsafe";
-      popup.style.backgroundColor = "#ff9999";
+      popup.paddingLeft = '6px';
+      popup.innerHTML = "UNSAFE";
+      //popup.style.backgroundColor = "#FF5733";
+      div.style.background = 'linear-gradient(to right, #FF5733 50%, black 80%)';
     } else {
-      popup.innerHTML = "Link is Safe";
-      popup.style.backgroundColor = "#00cc99";
+      popup.paddingLeft = '15px';
+      popup.innerHTML = "SAFE";
+      popup.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
     }
 
     // update the popup's position, reappend the image, and make the popup visible
@@ -116,7 +123,7 @@ function onMouseClick(e) {
     {
 		  console.log(curLink + "Is saved");
 	  })
-    
+
     // if link is unsafe then redirect to the warning page
     //warningPage
     location.href = warningPage;

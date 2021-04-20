@@ -15,16 +15,22 @@ div.style.lineHeight = '25px';
 
 div.style.top = '0px';
 div.style.left = '0px';
-div.style.width = '190px';
-div.style.height = '30px';
-div.style.padding = '10px';
+div.style.width = '110px';
+div.style.height = '20px';
+div.style.paddingLeft = '15px';
+div.style.paddingTop = '6px';
+div.style.paddingBottom = '6px';
+div.paddingRight = '20px';
+div.style.borderRadius = '10px';
 
-div.style.border = '1px solid #666666';
-div.style.backgroundColor = '#c0cedd';
+div.style.border = '1px solid #1C2833';
+//div.style.backgroundColor = '#40E0D0';
+div.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
+div.style.fontFamily = 'arial,helvtica,courier';
 
-div.style.textAlign = 'center';
+div.style.textAlign = 'left';
 div.style.visibility = 'hidden';
-div.innerHTML = 'WARNING: Unsafe Link';
+div.innerHTML = '';
 
 // append div element to the current webpage
 document.body.appendChild( div );
