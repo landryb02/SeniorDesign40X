@@ -51,8 +51,9 @@ function() { reportMal()
 }
 
 
+
+
 //Change Text Font and Size
-var greet;
 
 function changeFont() {
     var myselect = document.getElementById("input-font");
@@ -75,13 +76,33 @@ function changeSize() {
 
 
 document.addEventListener('DOMContentLoaded', function(){
-	document.getElementById('applybtn')
-		.addEventListener('click', changeFont);
+	document.getElementById('applybtn').addEventListener('click', changeFont);
 
-	document.getElementById('applybtn')
-		.addEventListener('click', changeSize);
+	document.getElementById('applybtn').addEventListener('click', changeSize);
 
     document.getElementById('linkcheckbtn').addEventListener('click', checkLink);
+
+    // Slider function
+    var checkbox = document.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          chrome.tabs.sendMessage(tabs[0].id, {greeting: "checked" }, function(response) {
+            console.log(response.farewell);
+          });
+        });
+        chrome.storage.sync.set({"CheckPos" : "checked"}, function(){console.log("saved check");})
+        console.log('Checked');
+      } else {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          chrome.tabs.sendMessage(tabs[0].id, {greeting: "unchecked" }, function(response) {
+            console.log(response.farewell);
+          });
+        });
+        chrome.storage.sync.set({"CheckPos" : "unchecked"}, function(){console.log("saved check");})
+        console.log('Not checked');
+      }
+    });
 });
 
 function checkLink() {

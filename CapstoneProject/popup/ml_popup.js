@@ -23,6 +23,8 @@ chrome.storage.sync.get("FontSize", function(data){
   console.log(data);
 })
 
+
+
 //This function will help with mitigating status retrieval issues
 function sleep(ms)
 {
@@ -128,25 +130,50 @@ function attachListenerToAllAnchors() {
     anchorElem.addEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem), true);
     anchorElem.addEventListener("mousedown", onMouseClick.bind(anchorElem), true);
   }
-  chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-      if (request.greeting == "12"){
-        popup.style.fontSize = "12px";
-        console.log("12");
-        sendResponse({farewell: "goodbye"});
-      }
-      if (request.greeting == "16"){
-        popup.style.fontSize = "16px";
-        console.log("16");
-        sendResponse({farewell: "goodbye"});
-      }
-      if (request.greeting == "20"){
-        popup.style.fontSize = "20px";
-        console.log("20");
-        sendResponse({farewell: "goodbye"});
-      }
-    }
-  );
 }
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    //slider
+    if (request.greeting == "checked"){
+      attachListenerToAllAnchors();
+      console.log("slider was turned on");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "unchecked"){
+      for(let anchorElem of document.querySelectorAll('A')) {
+        anchorElem.removeEventListener("mouseenter", onMouseEnterLink.bind(anchorElem));
+        anchorElem.removeEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem));
+        anchorElem.removeEventListener("mousedown", onMouseClick.bind(anchorElem));
+      }
+      console.log("slider was turned off");
+      sendResponse({farewell: "goodbye"});
+    }
 
-attachListenerToAllAnchors();
+    //font stuff
+    if (request.greeting == "12"){
+      popup.style.fontSize = "12px";
+      console.log("12");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "16"){
+      popup.style.fontSize = "16px";
+      console.log("16");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "20"){
+      popup.style.fontSize = "20px";
+      console.log("20");
+      sendResponse({farewell: "goodbye"});
+    }
+  }
+);
+
+chrome.storage.sync.get("CheckPos", function(data){
+  if (data.CheckPos == "unchecked"){
+    console.log("slider is off");
+  }
+  else{
+    attachListenerToAllAnchors();
+  }
+})
+
