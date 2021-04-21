@@ -126,9 +126,9 @@ function attachListenerToAllAnchors() {
   // cycle through each anchor element in the current webpage
   // attach a mouseenter, mouseleave, and mousedown event to each anchor
   for(let anchorElem of document.querySelectorAll('A')) {
-    anchorElem.addEventListener("mouseenter", onMouseEnterLink.bind(anchorElem), true);
-    anchorElem.addEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem), true);
-    anchorElem.addEventListener("mousedown", onMouseClick.bind(anchorElem), true);
+    anchorElem.addEventListener("mouseenter", onMouseEnterLink, true);
+    anchorElem.addEventListener("mouseleave", onMouseLeaveLink, true);
+    anchorElem.addEventListener("mousedown", onMouseClick, true);
   }
 }
 chrome.runtime.onMessage.addListener(
@@ -141,9 +141,9 @@ chrome.runtime.onMessage.addListener(
     }
     if (request.greeting == "unchecked"){
       for(let anchorElem of document.querySelectorAll('A')) {
-        anchorElem.removeEventListener("mouseenter", onMouseEnterLink.bind(anchorElem));
-        anchorElem.removeEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem));
-        anchorElem.removeEventListener("mousedown", onMouseClick.bind(anchorElem));
+        anchorElem.removeEventListener("mouseenter", onMouseEnterLink, true);
+        anchorElem.removeEventListener("mouseleave", onMouseLeaveLink, true);
+        anchorElem.removeEventListener("mousedown", onMouseClick, true);
       }
       console.log("slider was turned off");
       sendResponse({farewell: "goodbye"});
