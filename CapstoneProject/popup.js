@@ -1,7 +1,7 @@
 let changeColor = document.getElementById('changeColor');
 
 document.addEventListener('DOMContentLoaded', documentEvents  , false);
-
+var checkbox = document.querySelector('input[type="checkbox"]');
 
 chrome.storage.sync.get('color', function(data) {
   changeColor.style.backgroundColor = data.color;
@@ -51,6 +51,16 @@ function() { reportMal()
 }
 
 
+chrome.storage.sync.get("CheckPos", function(data){
+  if (data.CheckPos == "unchecked"){
+    checkbox.checked = false
+    console.log("unchecked");
+  }
+  else{
+    checkbox.checked=true;
+    console.log("checked");
+  }
+})
 
 
 //Change Text Font and Size
