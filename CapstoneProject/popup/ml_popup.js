@@ -18,6 +18,18 @@ img.style.paddingLeft = '45px';
 
 popup.appendChild(img);
 
+chrome.storage.sync.get("FontSize", function(data){
+  popup.style.fontSize = data.FontSize +"px";
+  console.log(data);
+})
+
+chrome.storage.sync.get("FontType", function(data){
+  popup.style.fontFamily = data.FontType;
+  console.log(data);
+})
+
+
+
 //This function will help with mitigating status retrieval issues
 function sleep(ms)
 {
@@ -37,38 +49,11 @@ var mouseX;
 var mouseY;
 
 
-//function setup(e) {
-//  setTimeout(() => {
-//    chrome.storage.sync.get("isAppOn", e => {
-//      if (e.isAppOn) {
-//        attachListenerToAllAnchors()
-//      }
-//    })
-//  }, 1e3)
-//}
-
 // mouse move event that updates the mouse coordinates
 document.addEventListener('mousemove', (event) => {
   mouseX = event.clientX;
   mouseY = event.clientY;
 });
-
-// check if the current link being hovered over is safe
-// this is the connection between the hover popup and Landry's work
-/*
-async function checkLinkSafety() {
-  userAction(curLink);
-  if (nonsafeURL.includes(curLink)) {
-    //console.log("This is the unsafe current link: ", curLink);
-    await sleep(1000);
-    return false;
-  } else {
-    await sleep(1000);
-    console.log("Link is safe");
-    return true;
-    }
-}
-*/
 
 // activates when the mouse enters a new URL or link
 async function onMouseEnterLink(e) {
@@ -100,10 +85,12 @@ async function onMouseEnterLink(e) {
     popup.appendChild(img);
     popup.style.visibility = "visible";
 
-    // Display current link being hovered in the console
-    //console.log("Current Link Is: " + curLink);
+    await sleep(3000);
+    popup.style.visibility = "hidden";
   }
 }
+
+
 
 // activates when the mouse leaves a link
 function onMouseLeaveLink(e) {
@@ -144,10 +131,74 @@ function attachListenerToAllAnchors() {
   // cycle through each anchor element in the current webpage
   // attach a mouseenter, mouseleave, and mousedown event to each anchor
   for(let anchorElem of document.querySelectorAll('A')) {
-    anchorElem.addEventListener("mouseenter", onMouseEnterLink.bind(anchorElem), true);
-    anchorElem.addEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem), true);
-    anchorElem.addEventListener("mousedown", onMouseClick.bind(anchorElem), true);
+    anchorElem.addEventListener("mouseenter", onMouseEnterLink, true);
+    anchorElem.addEventListener("mouseleave", onMouseLeaveLink, true);
+    anchorElem.addEventListener("mousedown", onMouseClick, true);
   }
 }
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    //slider
+    if (request.greeting == "checked"){
+      attachListenerToAllAnchors();
+      console.log("slider was turned on");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "unchecked"){
+      for(let anchorElem of document.querySelectorAll('A')) {
+        anchorElem.removeEventListener("mouseenter", onMouseEnterLink, true);
+        anchorElem.removeEventListener("mouseleave", onMouseLeaveLink, true);
+        anchorElem.removeEventListener("mousedown", onMouseClick, true);
+      }
+      console.log("slider was turned off");
+      sendResponse({farewell: "goodbye"});
+    }
 
-attachListenerToAllAnchors();
+    //font stuff
+    if (request.greeting == "12"){
+      popup.style.fontSize = "12px";
+      console.log("12");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "16"){
+      popup.style.fontSize = "16px";
+      console.log("16");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "20"){
+      popup.style.fontSize = "20px";
+      console.log("20");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "Times New Roman"){
+      popup.style.fontFamily = "Times New Roman";
+      console.log("Times New Roman");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "Arial"){
+      popup.style.fontFamily = "Arial";
+      console.log("Arial");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "fantasy"){
+      popup.style.fontFamily = "fantasy";
+      console.log("fantasy");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "cursive"){
+      popup.style.fontFamily = "cursive";
+      console.log("cursive");
+      sendResponse({farewell: "goodbye"});
+    }
+  }
+);
+
+chrome.storage.sync.get("CheckPos", function(data){
+  if (data.CheckPos == "unchecked"){
+    console.log("slider is off");
+  }
+  else{
+    attachListenerToAllAnchors();
+  }
+})
+
