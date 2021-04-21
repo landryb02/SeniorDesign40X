@@ -52,6 +52,8 @@ function() { reportMal()
 
 
 //Change Text Font and Size
+var greet;
+
 function changeFont() {
     var myselect = document.getElementById("input-font");
     var font = myselect.options[myselect.selectedIndex].value;
@@ -60,8 +62,15 @@ function changeFont() {
 
 function changeSize() {
 	var myselect = document.getElementById("input-size");
-    var size = myselect.options[myselect.selectedIndex].value;
+  var size = myselect.options[myselect.selectedIndex].value;
 	document.getElementById("output-text").style.fontSize = size + "px";
+  
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {greeting: size }, function(response) {
+      console.log(response.farewell);
+    });
+  });
+  chrome.storage.sync.set({"FontSize" : size}, function(){console.log("saved size");})
 };
 
 
