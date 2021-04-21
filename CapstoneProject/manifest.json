@@ -20,6 +20,7 @@
 	},
 	"icons": {
     	"16": "images/Logo16.png",
+			"16": "images/Logo16Dark.png",
 	  	"32":"images/Logo32.png",
 	  	"48":"images/Logo48.png",
 	  	"128":"images/Logo128.png"

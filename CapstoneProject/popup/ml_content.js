@@ -16,7 +16,7 @@ div.style.lineHeight = '25px';
 div.style.top = '0px';
 div.style.left = '0px';
 div.style.width = '110px';
-div.style.height = '20px';
+div.style.height = '35px';
 div.style.paddingLeft = '15px';
 div.style.paddingTop = '6px';
 div.style.paddingBottom = '6px';
@@ -26,7 +26,7 @@ div.style.borderRadius = '10px';
 div.style.border = '1px solid #1C2833';
 //div.style.backgroundColor = '#40E0D0';
 div.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
-div.style.fontFamily = 'arial,helvtica,courier';
+div.style.fontFamily = 'helvtica,courier';
 
 div.style.textAlign = 'left';
 div.style.visibility = 'hidden';
