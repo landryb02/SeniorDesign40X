@@ -59,6 +59,13 @@ function changeFont() {
     var myselect = document.getElementById("input-font");
     var font = myselect.options[myselect.selectedIndex].value;
     document.getElementById("output-text").style.fontFamily = font;
+
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.sendMessage(tabs[0].id, {greeting: font }, function(response) {
+        console.log(response.farewell);
+      });
+    });
+    chrome.storage.sync.set({"FontType" : font}, function(){console.log("saved font");})
 };
 
 function changeSize() {

@@ -23,6 +23,11 @@ chrome.storage.sync.get("FontSize", function(data){
   console.log(data);
 })
 
+chrome.storage.sync.get("FontType", function(data){
+  popup.style.fontFamily = data.FontType;
+  console.log(data);
+})
+
 
 
 //This function will help with mitigating status retrieval issues
@@ -163,6 +168,26 @@ chrome.runtime.onMessage.addListener(
     if (request.greeting == "20"){
       popup.style.fontSize = "20px";
       console.log("20");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "Times New Roman"){
+      popup.style.fontFamily = "Times New Roman";
+      console.log("Times New Roman");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "Arial"){
+      popup.style.fontFamily = "Arial";
+      console.log("Arial");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "fantasy"){
+      popup.style.fontFamily = "fantasy";
+      console.log("fantasy");
+      sendResponse({farewell: "goodbye"});
+    }
+    if (request.greeting == "cursive"){
+      popup.style.fontFamily = "cursive";
+      console.log("cursive");
       sendResponse({farewell: "goodbye"});
     }
   }
