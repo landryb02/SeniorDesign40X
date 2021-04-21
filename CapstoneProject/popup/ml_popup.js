@@ -18,6 +18,11 @@ img.style.paddingLeft = '45px';
 
 popup.appendChild(img);
 
+chrome.storage.sync.get("FontSize", function(data){
+  popup.style.fontSize = data.FontSize +"px";
+  console.log(data);
+})
+
 //This function will help with mitigating status retrieval issues
 function sleep(ms)
 {
@@ -123,6 +128,25 @@ function attachListenerToAllAnchors() {
     anchorElem.addEventListener("mouseleave", onMouseLeaveLink.bind(anchorElem), true);
     anchorElem.addEventListener("mousedown", onMouseClick.bind(anchorElem), true);
   }
+  chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      if (request.greeting == "12"){
+        popup.style.fontSize = "12px";
+        console.log("12");
+        sendResponse({farewell: "goodbye"});
+      }
+      if (request.greeting == "16"){
+        popup.style.fontSize = "16px";
+        console.log("16");
+        sendResponse({farewell: "goodbye"});
+      }
+      if (request.greeting == "20"){
+        popup.style.fontSize = "20px";
+        console.log("20");
+        sendResponse({farewell: "goodbye"});
+      }
+    }
+  );
 }
 
 attachListenerToAllAnchors();
