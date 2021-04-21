@@ -11,9 +11,12 @@ var warningPage = chrome.runtime.getURL("warning_page/Warning.html");
 
 // Grab the logo's directory relative to the current URL and append this image
 // to the ppopup div element
-img.src = chrome.runtime.getURL("images/Logo16.png");
+img.src = chrome.runtime.getURL("images/Logo16Dark.png");
 img.style.display = 'inline-block';
-img.style.paddingLeft = '45px';
+img.style.float = 'right';
+// margin: top (0px), right (0px), bottom (0px), left (0px);
+img.style.margin = '2% 7% 0px 0px';
+//img.style.paddingLeft = '45px';
 //img.align = 'right';
 
 popup.appendChild(img);
@@ -201,4 +204,3 @@ chrome.storage.sync.get("CheckPos", function(data){
     attachListenerToAllAnchors();
   }
 })
-
