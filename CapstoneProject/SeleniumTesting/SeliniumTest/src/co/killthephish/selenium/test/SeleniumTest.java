@@ -1,26 +1,22 @@
 package co.killthephish.selenium.test;
 
+import java.util.ArrayList;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.interactions.internal.Locatable;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumTest {
+	private static ArrayList<String> tabs;
 	//Disclaimer, I know this code looks bad, I'll fix it up when I get the chance
-	
-	public static boolean warningPageCheck(String eleid, String title, WebElement myelement, Locatable element, Coordinates coords, ChromeDriver driver) {
-		myelement = driver.findElement(By.id(eleid)); //finds the ignore warning or go back button
-		element = (Locatable) myelement;
-		coords = element.getCoordinates();
-		driver.getMouse().click(coords); //clicks the ignore warning page
-		if (driver.getTitle().contains(title)) {
-			return true;
-		}
-		return false;
-	}
 	
 	
 	//needs to move out of a link in order to change whether the link is safe or not
@@ -34,6 +30,11 @@ public class SeleniumTest {
 		boolean clicktest2 = false;
 		boolean backtest = false;
 		boolean fronttest = false;
+		boolean popuptest1 = false;
+		boolean popuptest2 = false;
+		boolean popuptest3 = false;
+		boolean popuptest4 = false;
+		boolean popuptest5 = false;
 
 		//needs to get the chrome driver to get Selenium to work on Chrome
 		//THE LOCATION WILL CHANGE IF DONE ON ANOTHER COMPUTER
@@ -93,7 +94,7 @@ public class SeleniumTest {
 		//System.out.println(text);
 		visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
 		//System.out.println(visibility);
-		if (text.equals("Link is Safe") && visibility.equals("visible")) {
+		if (text.equals("SAFE") && visibility.equals("visible")) {
 			hovertest2 = true;
 		}
 		
@@ -124,7 +125,7 @@ public class SeleniumTest {
 		//System.out.println(text);
 		visibility = driver.findElement(By.id("popup")).getCssValue("visibility");
 		//System.out.println(visibility);
-		if (text.equals("WARNING: Link Unsafe") && visibility.equals("visible")) {
+		if (text.equals("UNSAFE") && visibility.equals("visible")) {
 			hovertest3 = true;
 		}
 		
@@ -154,9 +155,37 @@ public class SeleniumTest {
 		
 		fronttest = warningPageCheck("myButton2", "Virus/Spyware Download Blocked", myelement, element, coords, driver);
 		
-		//Next must make sure that the 
+		/*for the popup extension, will need:
+		 *   test on/off switch, maybe by closing tab and opening it back up
+		 *   test report buttons
+		 *   test manual link check
+		 */
+		
+		//goes to the popup page
+		String EXTENSION_PROTOCOL = "chrome-extension";
+		String EXTENSION_ID = "mcfboipgojocpcjknhkjiggdeldolbkd";
+		String popupPage = EXTENSION_PROTOCOL + "://" + EXTENSION_ID + "/popup.html";
+		
+		driver.get(popupPage);
+		
+		//Test 1: Testing on/off switch
+		popuptest1 = PopupTest1(driver, popupPage);
+		
+		//Test 2: Testing report buttons
+		popuptest2 = PopupTest2(driver); //malware site
+		driver.get(popupPage);
+		popuptest3 = PopupTest3(driver); //phishing site
+		driver.get(popupPage);
+
+		//Test 3: Testing manual check button
+		popuptest4 = PopupTest4(driver);
+		
+		//Test 4: Testing about button
+		popuptest5 = PopupTest5(driver);
+		
+		
 		//checks to see if all tests have passed.
-		if (hovertest1 && hovertest2 && hovertest3 && hovertest3 && clicktest2 && backtest) {
+		if (hovertest1 && hovertest2 && hovertest3 && hovertest3 && clicktest2 && backtest && popuptest1 && popuptest2 && popuptest3 && popuptest4 && popuptest5) {
 			System.out.println("Test Successful");
 		}else {
 			System.out.println("Test Failed");
@@ -167,9 +196,114 @@ public class SeleniumTest {
 			System.out.println("clicktest2 = " + clicktest2);
 			System.out.println("backtest = " + backtest);
 			System.out.println("fronttest = " + fronttest);
+			System.out.println("popuptest1 = " + popuptest1);
+			System.out.println("popuptest2 = " + popuptest2);
+			System.out.println("popuptest3 = " + popuptest3);
+			System.out.println("popuptest4 = " + popuptest4);
 		}
 		
 	}
 
+	private static boolean PopupTest5(ChromeDriver driver) {
+		WebElement about = driver.findElement(By.linkText("About the Extension"));
+		about.click();
+		if (driver.getCurrentUrl().equals("chrome-extension://mcfboipgojocpcjknhkjiggdeldolbkd/aboutPage/DescriptionPage.htm"))
+			return true;
+		return false;
+	}
+
+	//Testing manual link check
+	private static boolean PopupTest4(ChromeDriver driver) throws InterruptedException {
+		//check good link
+		WebElement textbox = driver.findElement(By.id("manualLink"));
+		textbox.sendKeys("http://en.wikipedia.org/wiki/Wiki");
+		WebElement checkbtn = driver.findElement(By.id("linkcheckbtn"));
+		checkbtn.click();
+		WebDriverWait wait = new WebDriverWait(driver, 15, 100);
+		wait.until(ExpectedConditions.alertIsPresent());
+		Alert alert = driver.switchTo().alert();
+		String alertMessage = driver.switchTo().alert().getText();
+		Thread.sleep(1000);
+		if (!alertMessage.equals("Nothing Found, Probably Safe")) {
+			alert.accept();
+			return false;
+		}else {
+			//check bad link
+			driver.switchTo().alert().accept();
+			textbox.clear();
+			textbox.sendKeys("http://malware.wicar.org/data/eicar.com");
+			checkbtn.click();
+			wait.until(ExpectedConditions.alertIsPresent());
+			alert = driver.switchTo().alert();
+			alertMessage = driver.switchTo().alert().getText();
+			Thread.sleep(1000);
+			if(alertMessage.equals("Unsafe Link")) {
+				alert.accept();
+				return true;
+			}
+		}
+		alert.accept();
+		return false;
+	}
+
+	//Testing report Phish button
+	private static boolean PopupTest3(ChromeDriver driver) throws InterruptedException {
+		WebElement PhishButton = driver.findElement(By.id("reportPhish_btn"));
+		PhishButton.click();
+		Thread.sleep(2000);
+		for (String newWindow : driver.getWindowHandles()) {
+			driver.switchTo().window(newWindow);
+		}
+		if (driver.getTitle().equals("Report a Phishing Page"))
+			return true;
+		return false;
+	}
+
+	//Testing report malware button on the popup page
+	private static boolean PopupTest2(ChromeDriver driver) throws InterruptedException {
+		WebElement malButton = driver.findElement(By.id("reportMal_btn"));
+		malButton.click();
+		Thread.sleep(2000);
+		for (String newWindow : driver.getWindowHandles()) {
+			driver.switchTo().window(newWindow);
+		}
+		if (driver.getTitle().equals("Google Safe Browsing: Report a Malware Page"))
+			return true;
+		return false;
+	}
+	
+	//Testing the on/off slider on popup
+	public static boolean PopupTest1(ChromeDriver driver, String wbpage) {
+		WebElement checkbox = driver.findElement(By.id("checkbox"));
+		checkbox.click(); //should make the element off
+		
+		//opening the popup again in a new tab
+		((JavascriptExecutor)driver).executeScript("window.open()");
+		tabs = new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		driver.get(wbpage);
+		driver.switchTo().window(tabs.get(0));
+		driver.close();
+		driver.switchTo().window(tabs.get(1));
+		//checks if the toggle switch is unchecked
+		checkbox = driver.findElement(By.id("checkbox"));
+
+		if (checkbox.isSelected() == false) {
+			//it successfully saved the user's option
+			return true;
+		}
+		return false;
+	}
+
+	public static boolean warningPageCheck(String eleid, String title, WebElement myelement, Locatable element, Coordinates coords, ChromeDriver driver) {
+		myelement = driver.findElement(By.id(eleid)); //finds the ignore warning or go back button
+		element = (Locatable) myelement;
+		coords = element.getCoordinates();
+		driver.getMouse().click(coords); //clicks the ignore warning page
+		if (driver.getTitle().contains(title)) {
+			return true;
+		}
+		return false;
+	}
 }
 
