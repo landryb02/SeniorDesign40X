@@ -1,20 +1,42 @@
 body
 {
-	background-color: black;
-	color: red;
+	background-color: red;
+	color: white;
 	text-align: center;
 	
+}
+
+h1{
+	height: 7em;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+
 }
 
 p
 {
 	font-size: 20px;
+	height: 5em;
+    position: relative;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
 }
 
 .floating_image
 {
-	float: center;
-	align-items: center;
+	float: left;
+	align-items: left;
+	left: -10vw;
 }
 
 #myButton {
@@ -26,7 +48,7 @@ p
 	text-align: center;
 	text-decoration: none;
 	font-size: 16px;
-	margin: 4px 2px;
+	margin-top: 500px;
 	cursor: pointer;
 	position: relative;
 	left: -10vw;
@@ -36,7 +58,7 @@ p
 #myButton2 {
 	display: inline-block;
 	text-decoration-color: red;
-	background-color: black;
+	background-color: #D3D3D3;
 	border: none;
 	color: red;
 	border: none;
