@@ -37,38 +37,11 @@ var mouseX;
 var mouseY;
 
 
-//function setup(e) {
-//  setTimeout(() => {
-//    chrome.storage.sync.get("isAppOn", e => {
-//      if (e.isAppOn) {
-//        attachListenerToAllAnchors()
-//      }
-//    })
-//  }, 1e3)
-//}
-
 // mouse move event that updates the mouse coordinates
 document.addEventListener('mousemove', (event) => {
   mouseX = event.clientX;
   mouseY = event.clientY;
 });
-
-// check if the current link being hovered over is safe
-// this is the connection between the hover popup and Landry's work
-/*
-async function checkLinkSafety() {
-  userAction(curLink);
-  if (nonsafeURL.includes(curLink)) {
-    //console.log("This is the unsafe current link: ", curLink);
-    await sleep(1000);
-    return false;
-  } else {
-    await sleep(1000);
-    console.log("Link is safe");
-    return true;
-    }
-}
-*/
 
 // activates when the mouse enters a new URL or link
 async function onMouseEnterLink(e) {
@@ -100,10 +73,12 @@ async function onMouseEnterLink(e) {
     popup.appendChild(img);
     popup.style.visibility = "visible";
 
-    // Display current link being hovered in the console
-    //console.log("Current Link Is: " + curLink);
+    await sleep(3000);
+    popup.style.visibility = "hidden";
   }
 }
+
+
 
 // activates when the mouse leaves a link
 function onMouseLeaveLink(e) {
