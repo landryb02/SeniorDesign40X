@@ -3,19 +3,19 @@ let changeColor = document.getElementById('changeColor');
 document.addEventListener('DOMContentLoaded', documentEvents  , false);
 var checkbox = document.querySelector('input[type="checkbox"]');
 
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
-});
+//chrome.storage.sync.get('color', function(data) {
+//  changeColor.style.backgroundColor = data.color;
+//  changeColor.setAttribute('value', data.color);
+//});
 
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: 'document.body.style.backgroundColor = "' + color + '";'});
-  });
-};
+//changeColor.onclick = function(element) {
+//  let color = element.target.value;
+//  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//    chrome.tabs.executeScript(
+//        tabs[0].id,
+//        {code: 'document.body.style.backgroundColor = "' + color + '";'});
+//  });
+//};
 
 //Test functionality for search field and "go button"
 function myAction(input) {

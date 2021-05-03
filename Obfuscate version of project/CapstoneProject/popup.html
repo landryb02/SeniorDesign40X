@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kill The Phish!</title>>
+<title>Kill The Phish!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 	button {
@@ -9,15 +9,16 @@
 		width: 30px;
 		outline: none;
 	}
-	
+
 	.switch {
 		position: relative;
 		display: inline-block;
 		width: 60px;
 		height: 34px;
+
 	}
 
-	.switch input { 
+	.switch input {
 		opacity: 0;
 		width: 0;
 		height: 0;
@@ -69,8 +70,8 @@
 	.slider.round:before {
 		border-radius: 50%;
 	}
-	
-	
+
+
 	.button{
 		height: 32px
 		width: 64px
@@ -84,75 +85,125 @@
 		font-size: 16px;
 		cursor: pointer;
 	}
-		
+
+	.boxes1{
+		float:left;
+		background-color: Snow;
+		padding:10px;
+		width:200px;
+		margin: 10px;
+		border-radius: 25px;
+		border: 1px solid black;
+		box-shadow:5px 10px 8px #888888;
+	}
+
+	.boxes2{
+		float:left;
+		background-color: Snow;
+		padding:10px;
+		height:200px;
+		width:200px;
+		margin: 10px 10px 20px 10px;
+		border-radius: 25px;
+		border: 1px solid black;
+		box-shadow:5px 10px 8px #888888;
+	}
+
+	.boxes3{
+		border: 1px solid black;
+		border-radius: 25px;
+		margin: 10px;
+		padding:10px;
+		background-color: Snow;
+		box-shadow:5px 10px 8px #888888;
+		height: 70px;
+	}
+
 </style>
 </head>
-<body>
-<button id="changeColor"></button>
+<body style = "width=340px;">
 
-<div style="padding: 10px 20px 10px 20px;">
-<h3>Turn On/Off Hover Function</h3>
-
-<label class="switch">
-	<input type="checkbox" checked>
-	<span class="slider round"></span>
-</label> 
+<div>
+<img style="display:block; margin-left:auto; margin-right:auto; width:30%" src="/images/Logo128.png" alt = "logo">
 </div>
-<br>
 
-
-<div style="padding: 10px 20px 10px 20px;">
-<div id="output-text">
-  Change Font and Size for Hover Function
-</div><br>
-
-<label for="input-font">
-Font
-</label>
-    
-<select id="input-font" class="input" size="1">
-  <option value="Times New Roman" 
-            selected="selected"> 
-            Times New Roman 
-        </option> 
-        <option value="Arial">Arial</option> 
-        <option value="fantasy">Fantasy</option> 
-        <option value="cursive">Cursive</option>
-</select>
-<br>
-<label for="input-size">
-  Size
-</label>
-
-<select id="input-size" class="input" size="1">
-  <option value='12'>12</option>
-  <option value='16'>16</option>
-  <option value='20'>20</option>
-  <option value='24'>24</option>
-  <option value='28'>28</option>
-  <option value='32'>32</option>
-  <option value='36'>36</option>
-  <option value='40'>40</option>
-</select>
-
-<br>
-<button id="applybtn" class= "button apply">Apply</button>
+<div style="font-family: Garamond; font-size:25px;text-align:center;"><b>Kill the Phish</b>
 
 </div>
 
-<!--Test functionality for search box and input-->
-<div style="padding: 10px 20px 10px 20px;">           
-	<h3>Hello,</h3>
-	<p>Please enter your name : </p>         
-	<input id="name_textbox" />
-	<button id="ok_btn" type="button">OK</button>
-</div>
-<br>
-
-<div style="padding: 10px 20px 10px 20px;">
-<h3><a href="aboutPage/DescriptionPage.htm">About the Extension</a></h3>
+<div class= "boxes3" style="padding: 10px 20px 10px 20px;">
+	<div style= "font-family: Garamond; font-size:13px;"><b>Turn Browsing Protection Off:</b></div>
+	<br>
+	<div style= "position: absolute; left:50%; transform: translate(-50%,0%);">
+		<label class="switch" id="checkbox">
+			<input type="checkbox" checked>
+			<span class="slider round"></span>
+		</label>
+	</div>
 </div>
 
+<div>
+	<div class="boxes1">
+		<div>
+			<div style="font-family: Garamond; font-size:18px; text-align:center; margin-bottom:5px;"><b>Hover Box Settings</b> </div>
+			<div id="output-text" style="border: 1px solid Black; text-align:center;">
+			Change Font and Size for Hover Function
+			</div><br>
+
+			<label for="input-font"style = "margin:3px;">
+			Font:
+			</label>
+
+			<select id="input-font" class="input" size="1">
+			<option value="Times New Roman"
+						selected="selected">
+						Times New Roman
+					</option>
+					<option value="Arial">Arial</option>
+					<option value="fantasy">Fantasy</option>
+					<option value="cursive">Cursive</option>
+			</select>
+			<br>
+			<label for="input-size" style = "margin:3px;">
+			Size:
+			</label>
+
+			<select id="input-size" class="input" size="1"style = "margin:3px;">
+				<option value='12'>Small</option>
+				<option value='16'>Medium</option>
+				<option value='20'>Large</option>
+			</select>
+
+			<br>
+			<button id="applybtn" class= "button apply" style="margin-bottom=10px; margin:0px auto; display:block;">Apply</button>
+		</div>
+		
+	</div>
+	<div class="boxes2">
+		<div id="linkCheck"style="text-align:center;">
+			<label for="linkCheck" style="font-family: Garamond; font-size:18px;margin:20px; text-align:center"><b>Manual Link Check</b></label>
+			<br>
+			<input type="text" id="manualLink" style= "margin:10px;"/>
+			<input type="button" id="linkcheckbtn" value="Check Safety"style="margin:0px auto; display:block;border-radius:12px; background-color:snow; border: 1px solid Gray;"/>
+		</div>
+		<br>
+		<div style="font-family: Garamond;text-align:center;font-size:14px;padding-bottom:3px;">Is a bad site not blocked?</div>
+
+	<div style="padding: 0px 0px 10px 0px;">
+	<button id= "reportPhish_btn" style = "font-family: Garamond; font-size:15px; height: 25 px; width: 200px; border-radius:12px; background-color:snow; border: 1px solid Gray;">Report Phishing Site</button>
+	</div>
+
+
+	<div style="padding: 0px 0px 10px 0px;">
+	<button id= "reportMal_btn" style = "font-family: Garamond;font-size:15px; height: 25 px; width: 200px; border-radius:12px; background-color:snow; border: 1px solid Gray;">Report Malicious Site</button>
+	</div>
+	</div>
+
+	<div style="font-family: Garamond;text-align:right;font-size:20px;">
+	<a href="aboutPage/DescriptionPage.htm"><b>About the Extension</b></a>
+	</div>
+
+</div>
 <script src="popup.js"></script>
 </body>
 </html>
