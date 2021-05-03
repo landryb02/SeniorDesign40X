@@ -5,6 +5,7 @@
 
 // locate the popup div element that is added to the webpage via the content file
 var popup = document.getElementById("popup");
+
 var img = document.createElement("Img");
 // variable to hold location of the warning page
 var warningPage = chrome.runtime.getURL("warning_page/Warning.html");
@@ -14,12 +15,11 @@ var warningPage = chrome.runtime.getURL("warning_page/Warning.html");
 img.src = chrome.runtime.getURL("images/Logo16Dark.png");
 img.style.display = 'inline-block';
 img.style.float = 'right';
-// margin: top (0px), right (0px), bottom (0px), left (0px);
-img.style.margin = '2% 7% 0px 0px';
-//img.style.paddingLeft = '45px';
-//img.align = 'right';
+
+img.style.lineHeight = '30px';
 
 popup.appendChild(img);
+img.style.verticalAlign = 'middle';
 
 chrome.storage.sync.get("FontSize", function(data){
   popup.style.fontSize = data.FontSize +"px";
@@ -74,11 +74,16 @@ async function onMouseEnterLink(e) {
     if (nonsafeURL.includes(curLink)) {
       popup.paddingLeft = '6px';
       popup.innerHTML = "UNSAFE";
-      //popup.style.backgroundColor = "#FF5733";
+      div.style.lineHeight = '30px';
+      div.style.paddingLeft = '5px';
+      //popup.style.top = '50%';
       div.style.background = 'linear-gradient(to right, #FF5733 50%, black 80%)';
     } else {
       popup.paddingLeft = '15px';
       popup.innerHTML = "SAFE";
+      div.style.lineHeight = '30px';
+      div.style.paddingLeft = '5px';
+      //popup.style.top = '50%';
       popup.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
     }
 
@@ -86,6 +91,8 @@ async function onMouseEnterLink(e) {
     popup.style.top = String(posTop) + 'px';
     popup.style.left = String(posLeft) + 'px';
     popup.appendChild(img);
+    img.style.paddingRight = '7px';
+    img.style.paddingTop = '7%';
     popup.style.visibility = "visible";
 
     await sleep(3000);
