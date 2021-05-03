@@ -9,6 +9,8 @@ var popup = document.getElementById("popup");
 var img = document.createElement("Img");
 // variable to hold location of the warning page
 var warningPage = chrome.runtime.getURL("warning_page/Warning.html");
+var lineHeight = '24px';
+var imgHeight = '6px';
 
 // Grab the logo's directory relative to the current URL and append this image
 // to the ppopup div element
@@ -16,10 +18,16 @@ img.src = chrome.runtime.getURL("images/Logo16Dark.png");
 img.style.display = 'inline-block';
 img.style.float = 'right';
 
-img.style.lineHeight = '30px';
-
 popup.appendChild(img);
-img.style.verticalAlign = 'middle';
+img.style.lineHeight = lineHeight;
+
+// default settings for popup
+popup.style.fontSize = "12px";
+popup.style.height = '24px';
+popup.style.width = '90px';
+lineHeight = '24px';
+imgHeight = '4px';
+popup.style.fontFamily = "Times New Roman";
 
 chrome.storage.sync.get("FontSize", function(data){
   popup.style.fontSize = data.FontSize +"px";
@@ -74,14 +82,14 @@ async function onMouseEnterLink(e) {
     if (nonsafeURL.includes(curLink)) {
       popup.paddingLeft = '6px';
       popup.innerHTML = "UNSAFE";
-      div.style.lineHeight = '30px';
+      div.style.lineHeight = lineHeight;
       div.style.paddingLeft = '5px';
       //popup.style.top = '50%';
       div.style.background = 'linear-gradient(to right, #FF5733 50%, black 80%)';
     } else {
       popup.paddingLeft = '15px';
       popup.innerHTML = "SAFE";
-      div.style.lineHeight = '30px';
+      div.style.lineHeight = lineHeight;
       div.style.paddingLeft = '5px';
       //popup.style.top = '50%';
       popup.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
@@ -92,7 +100,7 @@ async function onMouseEnterLink(e) {
     popup.style.left = String(posLeft) + 'px';
     popup.appendChild(img);
     img.style.paddingRight = '7px';
-    img.style.paddingTop = '7%';
+    img.style.paddingTop = imgHeight;
     popup.style.visibility = "visible";
 
     await sleep(3000);
@@ -167,16 +175,28 @@ chrome.runtime.onMessage.addListener(
     //font stuff
     if (request.greeting == "12"){
       popup.style.fontSize = "12px";
+      popup.style.height = '24px';
+      popup.style.width = '90px';
+      lineHeight = '24px';
+      imgHeight = '4px';
       console.log("12");
       sendResponse({farewell: "goodbye"});
     }
     if (request.greeting == "16"){
       popup.style.fontSize = "16px";
+      popup.style.height = '30px';
+      popup.style.width = '100px';
+      lineHeight = '30px';
+      imgHeight = '7px';
       console.log("16");
       sendResponse({farewell: "goodbye"});
     }
     if (request.greeting == "20"){
       popup.style.fontSize = "20px";
+      popup.style.height = '34px';
+      popup.style.width = '110px';
+      lineHeight = '34px';
+      imgHeight = '9px';
       console.log("20");
       sendResponse({farewell: "goodbye"});
     }

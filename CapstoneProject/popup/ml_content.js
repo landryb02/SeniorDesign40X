@@ -15,8 +15,8 @@ div.style.color = '#000000';
 
 //div.style.top = '0px';
 //div.style.left = '0px';
-div.style.width = '110px';
-div.style.height = '30px';
+div.style.width = '90px';
+div.style.height = '24px';
 
 //div.style.paddingLeft = '15px';
 //div.style.paddingTop = '6px';
