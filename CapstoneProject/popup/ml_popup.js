@@ -28,6 +28,7 @@ popup.style.width = '90px';
 lineHeight = '24px';
 imgHeight = '4px';
 popup.style.fontFamily = "Times New Roman";
+popup.style.color = 'white';
 
 chrome.storage.sync.get("FontSize", function(data){
   popup.style.fontSize = data.FontSize +"px";

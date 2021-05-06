@@ -30,6 +30,7 @@ div.style.background = 'linear-gradient(to right, #40E0D0 50%, black 80%)';
 div.style.fontFamily = 'helvtica,courier';
 
 div.style.textAlign = 'left';
+div.style.color = 'white';
 div.style.visibility = 'hidden';
 div.innerHTML = '';
 
