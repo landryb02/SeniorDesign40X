@@ -11,16 +11,17 @@ div.display = 'block';
 div.style.position = 'fixed';
 div.style.fontSize = '14px';
 div.style.color = '#000000';
-div.style.lineHeight = '25px';
+//div.style.lineHeight = '25px';
 
-div.style.top = '0px';
-div.style.left = '0px';
-div.style.width = '110px';
-div.style.height = '35px';
-div.style.paddingLeft = '15px';
-div.style.paddingTop = '6px';
-div.style.paddingBottom = '6px';
-div.paddingRight = '20px';
+//div.style.top = '0px';
+//div.style.left = '0px';
+div.style.width = '90px';
+div.style.height = '24px';
+
+//div.style.paddingLeft = '15px';
+//div.style.paddingTop = '6px';
+//div.style.paddingBottom = '6px';
+//div.paddingRight = '20px';
 div.style.borderRadius = '10px';
 
 div.style.border = '1px solid #1C2833';
