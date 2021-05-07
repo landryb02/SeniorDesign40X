@@ -150,14 +150,20 @@ function checkLink() {
           });
           const myJson = await response.json(); //extract JSON from the http response
           console.log(myJson);
+          var output = document.getElementById("safeUnsafe");
           if (isEmpty(myJson))
           {
-            alert("Nothing Found, Probably Safe");
+            output.innerHTML = "Link is Safe!"
+            output.style.color = "green";
           }
           else
           {
-            alert("Unsafe Link");
+            output.innerHTML = "Link is UNSAFE!"
+            output.style.color = "red";
           }
+          output.style.visibility = "visible";
+          output.style.fontWeight = "bold";
+
   }
 
   if (link == "") {
